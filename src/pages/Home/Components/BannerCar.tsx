@@ -69,10 +69,10 @@ export default function CarrouselCar() {
             </SwiperSlide>
           ))}
         </Swiper>
-        <button className="button-prev absolute left-10 top-1/2 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-full hover:bg-[#121212] hover:text-white transition-all">
+        <button className="button-prev absolute left-10 top-1/2 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-sm hover:bg-[#121212] hover:text-white transition-all">
           ←
         </button>
-        <button className="button-next absolute right-10 top-1/2 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-full hover:bg-[#121212] hover:text-white transition-all">
+        <button className="button-next absolute right-10 top-1/2 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-sm hover:bg-[#121212] hover:text-white transition-all">
           →
         </button>
       </div>
