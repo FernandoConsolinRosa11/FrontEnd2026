@@ -2,17 +2,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 import Ferrari from "../Assets/Ferrari.png";
-import Revuelto from "../Assets/Revuelto.png"
-import carCardThree from "../Assets/carCardThree.png"
-import carCardFour from "../Assets/carCardFour.png";
+import LamborghiniUrusSE from "../Assets/LamborghiniUrusSE.png"
+import McLaren720s from "../Assets/McLaren720s.png";
 import BuggatiReSide from "../Assets/BuggatiReside.png";
 import LamboReside from "../Assets/LamboReside.png";
 
 const cars = [
   { name: "Ferrari", img: Ferrari, slogan: "YOU CAN'T HIDE WHO YOU ARE" },
-  { name: "REVUELTO", img: Revuelto, slogan: "FROM NOW ON" },
-  { name: "SF90 Stradale", img: carCardThree, slogan: "SEILÁ FODASE" },
-  { name: "Huayra Roadster ", img: carCardFour, slogan: "CARRO FODA" },
+  { name: "Lamborghini Urus SE", img: LamborghiniUrusSE, slogan: "DARE TO LIVE MORE" },
+  { name: "Huayra Roadster ", img: McLaren720s, slogan: "CARRO FODA" },
   { name: "Buggati Chiron ", img: BuggatiReSide, slogan: "Velocidade Máxima" },
   { name: "Huracan ", img: LamboReside, slogan: "Super esportivo de respeito"},
 ];
