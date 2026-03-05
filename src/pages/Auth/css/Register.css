@@ -1,0 +1,24 @@
+/* Fundo register */
+.register-bg {
+  background-image: url("../assets/fundo-cadastro.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+/* Vidro formulario */
+.glass-form {
+  background: rgba(255, 255, 255, 0.014); /* fundo transparente */
+  backdrop-filter: blur(10px); /* efeito vidro */
+  -webkit-backdrop-filter: blur(10px); /* suporte safari */
+  border: 1px solid rgb(255, 255, 255, 0.014); /* borda clara */
+  border-radius: 12px;
+  box-shadow: 0 25px 75px;
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.form-redondo {
+    border-radius: 10px;
+}
