@@ -1,20 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
-import Ferrari from "../Assets/Ferrari.png";
-import Revuelto from "../Assets/Revuelto.png"
-import carCardThree from "../Assets/carCardThree.png"
-import carCardFour from "../Assets/carCardFour.png";
+import Porsche911GT3R from "../Assets/Porsche911GT3R.png";
+import LamborghiniUrusSE from "../Assets/LamborghiniUrusSE.png"
+import McLaren720s from "../Assets/McLaren720s.png";
 import BuggatiReSide from "../Assets/BuggatiReside.png";
-import LamboReside from "../Assets/LamboReside.png";
+import MercedesBenz300SL from "../Assets/MercedesBenz300SL1954.png";
 
 const cars = [
-  { name: "Ferrari", img: Ferrari, slogan: "YOU CAN'T HIDE WHO YOU ARE" },
-  { name: "REVUELTO", img: Revuelto, slogan: "FROM NOW ON" },
-  { name: "SF90 Stradale", img: carCardThree, slogan: "SEILÁ FODASE" },
-  { name: "Huayra Roadster ", img: carCardFour, slogan: "CARRO FODA" },
-  { name: "Buggati Chiron ", img: BuggatiReSide, slogan: "Velocidade Máxima" },
-  { name: "Huracan ", img: LamboReside, slogan: "Super esportivo de respeito"},
+  { name: "Porsche 911 GT3R", img: Porsche911GT3R, slogan: "NASCIDO PARA VENCER." },
+  { name: "Lamborghini Urus SE", img: LamborghiniUrusSE, slogan: "CONQUISTE QUALQUER CAMINHO." },
+  { name: "McLaren720s", img: McLaren720s, slogan: "VELOCIDADE EM ESTADO DE ARTE." },
+  { name: "Buggati Chiron ", img: BuggatiReSide, slogan: "PERFORMANCE SEM LIMITES." },
+  { name: "Mercedes Benz 300SL 1954", img:MercedesBenz300SL , slogan: "BELEZA ETERNA. ENGENHARIA LENDÁRIA."},
 ];
 
 export default function CarrouselCar() {
@@ -27,7 +25,7 @@ export default function CarrouselCar() {
           slidesPerView={2}
           centeredSlides={true}
           loop={true}
-          wrapperClass="flex justify-self-center m-auto "
+          wrapperClass="flex justify-self-center place-items-center m-auto"
           navigation={{
             nextEl: ".button-next",
             prevEl: ".button-prev",
@@ -69,10 +67,10 @@ export default function CarrouselCar() {
             </SwiperSlide>
           ))}
         </Swiper>
-        <button className="button-prev absolute left-10 top-1/2 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-full hover:bg-[#121212] hover:text-white transition-all">
+        <button className="button-prev absolute left-10 top-1/3 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-sm hover:bg-[#121212] hover:text-white transition-all">
           ←
         </button>
-        <button className="button-next absolute right-10 top-1/2 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-full hover:bg-[#121212] hover:text-white transition-all">
+        <button className="button-next absolute right-10 top-1/3 -translate-y-1/2 z-10 border border-gray-400 p-4 rounded-sm hover:bg-[#121212] hover:text-white transition-all">
           →
         </button>
       </div>
