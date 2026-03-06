@@ -1,18 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
-import Ferrari from "../Assets/Ferrari.png";
+import Porsche911GT3R from "../Assets/Porsche911GT3R.png";
 import LamborghiniUrusSE from "../Assets/LamborghiniUrusSE.png"
 import McLaren720s from "../Assets/McLaren720s.png";
 import BuggatiReSide from "../Assets/BuggatiReside.png";
-import LamboReside from "../Assets/LamboReside.png";
+import MercedesBenz300SL from "../Assets/MercedesBenz300SL1954.png";
 
 const cars = [
-  { name: "Ferrari", img: Ferrari, slogan: "YOU CAN'T HIDE WHO YOU ARE" },
-  { name: "Lamborghini Urus SE", img: LamborghiniUrusSE, slogan: "DARE TO LIVE MORE" },
-  { name: "Huayra Roadster ", img: McLaren720s, slogan: "CARRO FODA" },
-  { name: "Buggati Chiron ", img: BuggatiReSide, slogan: "Velocidade Máxima" },
-  { name: "Huracan ", img: LamboReside, slogan: "Super esportivo de respeito"},
+  { name: "Porsche 911 GT3R", img: Porsche911GT3R, slogan: "NASCIDO PARA VENCER." },
+  { name: "Lamborghini Urus SE", img: LamborghiniUrusSE, slogan: "CONQUISTE QUALQUER CAMINHO." },
+  { name: "McLaren720s", img: McLaren720s, slogan: "VELOCIDADE EM ESTADO DE ARTE." },
+  { name: "Buggati Chiron ", img: BuggatiReSide, slogan: "PERFORMANCE SEM LIMITES." },
+  { name: "Mercedes Benz 300SL 1954", img:MercedesBenz300SL , slogan: "BELEZA ETERNA. ENGENHARIA LENDÁRIA."},
 ];
 
 export default function CarrouselCar() {
@@ -25,7 +25,7 @@ export default function CarrouselCar() {
           slidesPerView={2}
           centeredSlides={true}
           loop={true}
-          wrapperClass="flex justify-self-center m-auto "
+          wrapperClass="flex justify-self-center place-items-center m-auto"
           navigation={{
             nextEl: ".button-next",
             prevEl: ".button-prev",
