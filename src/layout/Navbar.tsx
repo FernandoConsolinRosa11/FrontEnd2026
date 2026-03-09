@@ -19,8 +19,8 @@ export default function Navbar() {
          
         </div>
 
-        <div className="flex-1 flex justify-center">
-          <img src={Logo} alt="logo" className="text-center w-25" />
+        <div className="flex-1 flex justify-center m-0">
+          <Link to="/" ><img src={Logo} alt="logo" className="text-center w-full size-22 m-auto " /></Link>
         </div>
 
         <div className="flex-1 flex justify-end gap-6 text-sm uppercase tracking-widest mx-2">

@@ -17,7 +17,7 @@ const cars = [
 
 export default function CarrouselCar() {
   return (
-    <div className="justify-self-center w-full vh-300 overflow-hidden">
+    <div className="justify-self-center w-full vh-300 overflow-hidden my-5">
       <div className="relative  bg-white py-10 ">
         <Swiper
           modules={[Navigation]}
@@ -55,11 +55,11 @@ export default function CarrouselCar() {
                   <div
                     className={`flex gap-4 mt-10 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`}
                   >
-                    <button className="bg-[#C59958] text-white px-8 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] transition-all">
-                      Explore the model <span>→</span>
+                    <button className="bg-[#C59958] text-white px-8 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] transition-all  p-2">
+                      Explorar Modelo <span>→</span>
                     </button>
-                    <button className="border border-[#121212] px-8 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] hover:text-white transition-all">
-                      Download Brochure <span>↓</span>
+                    <button className="border border-[#121212] px-8 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] hover:text-white transition-all p-2">
+                      Ver Mais <span>↓</span>
                     </button>
                   </div>
                 </div>

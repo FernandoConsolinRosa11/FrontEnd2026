@@ -1,23 +1,20 @@
-import AppRoutes from './routes/AppRoutes';
-import { Navbar, Footer } from './layout';
+import AppRoutes from "./routes/AppRoutes";
+import { Navbar, Footer } from "./layout";
 import { useLocation } from "react-router-dom";
-import './App.css'
+import "./App.css";
 
 function App() {
-
   const location = useLocation();
-
-  const esconderLayout =
-    location.pathname === "/Login" ||
-    location.pathname === "/Register";
+  const hideNavbarAndFooter = ["/Login", "/Register"];
+  const isLoginOrRegister = hideNavbarAndFooter.includes(location.pathname);
 
   return (
     <>
-      {!esconderLayout && <Navbar />}
+      {!isLoginOrRegister && <Navbar />}
 
       <AppRoutes />
 
-      {!esconderLayout && <Footer/>}
+      {!isLoginOrRegister && <Footer />}
     </>
   );
 }
