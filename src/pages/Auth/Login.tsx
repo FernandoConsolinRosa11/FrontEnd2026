@@ -13,13 +13,13 @@ export default function Login() {
           Acesse sua conta <span className="text-[#C59958]">Prime</span>
         </h3>
         <input
-          className="p-2 bg-white rounded-sm"
+          className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
           type="email"
           name="email"
           placeholder="Email"
         />
         <input
-          className="p-2 bg-white rounded-sm mb-2"
+          className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
           type="password"
           name="senha"
           placeholder="Senha"

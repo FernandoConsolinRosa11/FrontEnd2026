@@ -12,30 +12,30 @@ export default function Register() {
       <form className="flex-col gap-7 flex w-full glass-form m-6! scale-80  backdrop-blur-xl! border border-white/10! ">
         <h3 className="m-auto text-white">Associe-se à  <span className="text-[#C59958]">Prime Motors</span></h3>
         <input
-          className="p-2 bg-white rounded-sm"
+          className="p-2 bg-white rounded-sm  placeholder-gray-700 text-black "
           type="text"
           name="nome"
           placeholder="Nome completo"
         />
         <input
-          className="p-2 bg-white rounded-sm"
+          className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
           type="text"
           name="cpf"
           placeholder="CPF"
         />
         <input
-          className="p-2 bg-white rounded-sm"
+          className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
           type="email"
           name="email"
           placeholder="Email"
         />
         <input
-          className="p-2 bg-white rounded-sm mb-2"
+          className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
           type="password"
           name="senha"
           placeholder="Senha"
         />
-        <Checkbox texto="Aceito os Termos"/>
+        <Checkbox texto="Aceito os Termos de Uso e a Política de Privacidade."/>
         
         <div className="grid grid-cols-3 items-center w-full">
           <Button
