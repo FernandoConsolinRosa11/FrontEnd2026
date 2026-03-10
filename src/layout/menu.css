@@ -1,0 +1,12 @@
+.bg-fundo{
+    background-color: #121212;
+}
+
+.animation{
+    color: whitesmoke;
+    transition: all 0.4s;
+}
+.animation:hover{
+    color: #C59958;
+    cursor: pointer;
+}

@@ -14,7 +14,7 @@ export default function Button({ texto, onClick, className }: ButtonProps) {
         rounded
         transition
         hover:bg-gray-700
-        active:scale-95
+        active:scale-100
         ${className || ""}
       `}
     >

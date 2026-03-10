@@ -8,10 +8,14 @@
 }
 /* Vidro formulario */
 .glass-form {
+<<<<<<< Updated upstream:src/pages/Auth/css/Register.css
   background: rgba(255, 255, 255, 0.014); /* fundo transparente */
   backdrop-filter: blur(10px); /* efeito vidro */
   -webkit-backdrop-filter: blur(10px); /* suporte safari */
   border: 1px solid rgb(255, 255, 255, 0.014); /* borda clara */
+=======
+  background: #12121298;
+>>>>>>> Stashed changes:src/pages/Auth/css/auth.css
   border-radius: 12px;
   box-shadow: 0 25px 75px;
   padding: 40px;
@@ -19,6 +23,17 @@
   max-width: 600px;
 }
 
+<<<<<<< Updated upstream:src/pages/Auth/css/Register.css
 .form-redondo {
     border-radius: 10px;
 }
+=======
+.login-bg {
+  background-image: url("../assets/novo-fundo.jpg");
+  background-size: cover;
+  background-position: center ;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+>>>>>>> Stashed changes:src/pages/Auth/css/auth.css
