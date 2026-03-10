@@ -1,10 +1,6 @@
-type ButtonProps = {
-  texto: string;
-  onClick?: () => void;
-  className?: string; // para customizações extras
-};
+import type {InputProps} from "../types/types.tsx"
 
-export default function Button({ texto, onClick, className }: ButtonProps) {
+export default function Button({ texto, onClick, className }: InputProps) {
   return (
     <button
       onClick={onClick}
