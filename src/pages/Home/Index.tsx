@@ -1,4 +1,4 @@
-import CarrouselCar from "./components/BannerCar"
+import CarrouselCar from "./Components/BannerCar";
 
 export default function Home(){
     return(

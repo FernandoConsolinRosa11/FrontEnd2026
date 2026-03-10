@@ -1,10 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-<<<<<<< Updated upstream
-import { Home, Login, Register } from "../pages";
-=======
 import { Home, Login, Register , ErrorPage} from "../pages";
 import Menu from "../layout/Menu";
->>>>>>> Stashed changes
 
 export default function AppRoutes() {
     return(
