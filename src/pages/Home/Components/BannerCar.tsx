@@ -18,6 +18,7 @@ const cars = [
 export default function CarrouselCar() {
   return (
     <div className="justify-self-center w-full vh-300 overflow-hidden my-5">
+      <h2 className="text-center my-5 text-[#C59958]!">Encontre sua próxima obra-prima</h2>
       <div className="relative  bg-white py-10 ">
         <Swiper
           modules={[Navigation]}

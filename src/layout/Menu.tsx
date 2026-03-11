@@ -8,32 +8,17 @@ export default function Menu() {
         <div className="grid grid-cols-3 gap-5 py-4 w-full content-center h-full">
 
           <div className="flex justify-between items-center animation me-4">
-            <span>MODELO</span>
+            <span>Modelos</span>
             <FaChevronRight />
           </div>
 
           <div className="flex justify-between items-center animation me-4">
-            <span>EXPLORAR</span>
+            <span>Explorar</span>
             <FaChevronRight />
           </div>
 
           <div className="flex justify-between items-center animation me-4">
-            <span>CARRO</span>
-            <FaChevronRight />
-          </div>
-
-          <div className="flex justify-between items-center animation me-4">
-            <span>CATEGORIA</span>
-            <FaChevronRight />
-          </div>
-
-          <div className="flex justify-between items-center animation me-4">
-            <span>MAE DO HIAGO</span>
-            <FaChevronRight />
-          </div>
-
-          <div className="flex justify-between items-center animation me-4">
-            <span>seis coisa</span>
+            <span>Garagem</span>
             <FaChevronRight />
           </div>
 
