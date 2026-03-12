@@ -1,16 +1,6 @@
-<<<<<<< Updated upstream
-type ButtonProps = {
-  texto: string;
-  onClick?: () => void;
-  className?: string; // para customizações extras
-};
-
-export default function Button({ texto, onClick, className }: ButtonProps) {
-=======
 import type { InputProps } from "../types/types.tsx"
 
 export default function Button({ texto, onClick, className, type = "button" }: InputProps) {
->>>>>>> Stashed changes
   return (
     <button
       type={type}
