@@ -5,6 +5,7 @@
 .animation{
     color: whitesmoke;
     transition: all 0.4s;
+    text-decoration: none;
 }
 .animation:hover{
     color: #C59958;

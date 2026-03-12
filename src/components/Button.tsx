@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 type ButtonProps = {
   texto: string;
   onClick?: () => void;
@@ -5,8 +6,14 @@ type ButtonProps = {
 };
 
 export default function Button({ texto, onClick, className }: ButtonProps) {
+=======
+import type { InputProps } from "../types/types.tsx"
+
+export default function Button({ texto, onClick, className, type = "button" }: InputProps) {
+>>>>>>> Stashed changes
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`
         cursor-pointer

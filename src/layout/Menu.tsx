@@ -1,4 +1,5 @@
 import { FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./menu.css";
 
 export default function Menu() {
@@ -13,27 +14,27 @@ export default function Menu() {
           </div>
 
           <div className="flex justify-between items-center animation me-4">
-            <span>EXPLORe</span>
+            <span>EXPLORAR</span>
             <FaChevronRight />
           </div>
 
           <div className="flex justify-between items-center animation me-4">
-            <span>CARRO</span>
+            <span>CARROS</span>
             <FaChevronRight />
           </div>
 
           <div className="flex justify-between items-center animation me-4">
-            <span>CATEGORIA</span>
+            <span>CATEGORIAS</span>
             <FaChevronRight />
           </div>
 
-          <div className="flex justify-between items-center animation me-4">
-            <span>MAE DO HIAGO</span>
+          <Link to={"/Catalogo"} className="flex justify-between items-center animation me-4">
+            <span>CATÁLOGO</span>
             <FaChevronRight />
-          </div>
+          </Link>
 
           <div className="flex justify-between items-center animation me-4">
-            <span>seis coisa</span>
+            <span>TESTE</span>
             <FaChevronRight />
           </div>
 
