@@ -39,7 +39,7 @@ export default function CarrouselCar() {
                 <div
                   className={`flex flex-col items-center transition-all duration-500  ${isActive ? "opacity-100 scale-100" : "opacity-30 scale-90"}`}
                 >
-                  <h2 className="text-4xl font-black italic tracking-tighter mb-4">
+                  <h2 className="italic tracking-wide mb-4 text-special ">
                     {car.name}
                   </h2>
 
@@ -50,11 +50,11 @@ export default function CarrouselCar() {
                   <img
                     src={car.img}
                     alt={car.name}
-                    className="w-full max-w-4xl object-contain scale-90"
+                    className="w-full max-w-4xl h-70! object-contain scale-90"
                   />
 
                   <div
-                    className={`flex gap-4 mt-10 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`}
+                    className={`flex gap-4 mt-10 transition-opacity  ${isActive ? "opacity-100" : "opacity-0"}`}
                   >
                     <button className="bg-[#C59958] text-white px-4 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] transition-all  ">
                       Explorar Modelo <span>→</span>
