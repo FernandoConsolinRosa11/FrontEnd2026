@@ -13,6 +13,7 @@ export default function Checkbox({ texto, onClick, className }: InputProps) {
                    checked:bg-[#C59958] checked:border-[#C59958]! 
                    focus:outline-none focus:ring-2 focus:ring-[#C59958]
                    transition duration-200 cursor-pointer"
+            required
           />
         </div>
       </label>
