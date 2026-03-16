@@ -4,7 +4,7 @@
 
 .animation{
     color: whitesmoke;
-    transition: all 0.4s;
+    transition: all 0.2s;
     text-decoration: none;
 }
 .animation:hover{

@@ -51,7 +51,7 @@ export default function ReviewsSection() {
                           {t.carPurchased}
                         </span>
                         <span className="text-[10px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
-                          <i className="bi bi-star-fill mr-2!"></i>
+                          <i className="bi bi-star-fill mr-2! text-[#C59958]"></i>
                           {t.stars} / 10
                         </span>
                       </div>

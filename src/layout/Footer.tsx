@@ -70,7 +70,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="justify-self-center ">
-          <img src={Logo} alt="logo" className="h-30! mt-5" />
+          <img src={Logo} alt="logo" className="size-22 w-full mt-5" />
         </div>
       </div>
     </footer>
