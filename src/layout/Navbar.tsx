@@ -10,7 +10,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="font-medium bg-[#121212] shadow-2xl py-3 relative ">
+    <nav className="font-medium bg-[#121212] shadow-2xl py-3 sticky!">
       <div className="container-fluid flex items-center justify-between ">
         <div className="flex-1 flex justify-start mx-2 relative">
           <Button

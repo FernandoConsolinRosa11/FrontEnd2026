@@ -6,7 +6,7 @@ export type InputProps = {
   type?: 'button' | 'submit' | 'reset';
 };
 
-export interface Review { //Reviews Carrossel Home
+export interface Review {  //Reviews Carrossel Home
   id: number;
   name: string;
   content: string;
