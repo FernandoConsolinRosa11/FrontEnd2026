@@ -1,6 +1,6 @@
 
 export type InputProps = {
-  texto: string;
+  texto?: string;
   onClick?: () => void;
   className?: string; 
   type?: 'button' | 'submit' | 'reset';
@@ -11,6 +11,6 @@ export interface Review {  //Reviews Carrossel Home
   name: string;
   content: string;
   carPurchased: string;
-  img: any;
+  img: string;
   stars:number;
 }
