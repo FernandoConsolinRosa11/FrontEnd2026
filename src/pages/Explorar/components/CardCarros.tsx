@@ -1,8 +1,9 @@
 import Image from "./cardimage.jpg";
+import Button from "../../../components/Button"
 
 export default function CardCarro() {
   return (
-    <div className="w-full max-w-[400px] bg-gray-800 text-white rounded-lg shadow-md overflow-hidden mt-5">
+    <div className="w-full max-w-[325px] bg-[#ffff] text-black shadow-md overflow-hidden mt-5  border border-zinc-800 ">
       {/* Imagem responsiva */}
       <img
         src={Image}
@@ -12,11 +13,25 @@ export default function CardCarro() {
 
       {/* Conteúdo do card */}
       <div className="p-4">
-        <h5 className="text-lg font-bold mb-2">
-          Titulo do carro dinamico do banco
-        </h5>
-        <p className="text-gray-200 text-sm mb-2">legenda dinamica</p>
-        <p className="text-gray-400 text-xs">data de post do carro</p>
+        <h6 className="text-xl! font-bold! mb-2">Porsche</h6>
+        <p className="text-gray-700 text-sm mb-2">
+          4.0 litros V8 Biturbo 4x4 Flex Automático 
+        </p>
+        <div className="flex gap-4">
+          <p className="text-gray-700 text-sm flex items-center gap-1">
+            <i className="bi bi-calendar" /> 2026/2026
+          </p>
+          <p className="text-gray-700 text-sm flex items-center gap-1">
+            <i className="bi bi-speedometer2" /> 123.000 Km
+          </p>
+        </div>
+        <div>
+          <p className="text-gray-700 text-sm flex items-center gap-1">
+            <i className="bi bi-geo-alt"></i> São Paulo (SP)
+          </p>
+        </div>
+        <h6 className="text-xl! font-bold! mb-2">USD$ 686.700</h6>
+        <Button texto='Ver Parcelas' className="bg-[#121212] text-white w-full"/>
       </div>
     </div>
   );

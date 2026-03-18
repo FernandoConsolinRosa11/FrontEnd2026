@@ -3,7 +3,7 @@ import Button from "../../components/Button";
 
 export default function Garagem() {
   return (
-    <div className="min-h-screen bg-[#121212] text-white p-10">
+    <div className="min-h-screen bg-[#121212] text-white p-10 ">
       <h2 className="text-3xl font-light tracking-widest uppercase mb-10 border-l-4 border-[#C59958] pl-4 ml-10! px-3!">
         Sua Garagem
       </h2>
