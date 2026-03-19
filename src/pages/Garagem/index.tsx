@@ -1,6 +1,6 @@
 import Mclaren from "../Home/Assets/imgMcLaren750s.jpg";
 import Button from "../../components/Button";
-import type { CardCarProps } from "../../types/types";
+// import type { CardCarProps } from "../../types/types";
 
 
 export default function Garagem() {

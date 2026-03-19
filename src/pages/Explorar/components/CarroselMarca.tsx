@@ -3,6 +3,7 @@ import "./Carrosel.css";
 
 export default function Carrosel() {
   const carros = [
+    "Todos",
     "Lamborghini",
     "Ferrari",
     "Porsche",
