@@ -2,10 +2,6 @@ import Mclaren from "../Home/Assets/imgMcLaren750s.jpg";
 import Button from "../../components/Button";
 import type { CardCarProps } from "../../types/types";
 
-export interface CardGarageProps extends CardCarProps{
-  status : 'Processando' | 'Entregue' | 'Cancelado';
-  purchaseDate: string;
-}
 
 export default function Garagem() {
   return (

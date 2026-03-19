@@ -34,3 +34,8 @@ export interface CardCarProps {
   }
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
 }
+
+export interface CardGarageProps extends CardCarProps{ 
+  status : 'Processando' | 'Entregue' | 'Cancelado';
+  purchaseDate: string;
+}
