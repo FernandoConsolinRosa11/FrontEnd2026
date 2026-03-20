@@ -1,29 +1,28 @@
-import Carrossel from "./components/CarroselMarca"
-import CardCarro from "./components/CardCarros"
+import Carrossel from "./components/CarroselMarca";
+import CardCarro from "./components/CardCarros";
+import SideBar from "./components/SideBar";
 
 export default function Explorar() {
-    return (
-        <div >
-            <div className="w-full">
-                <Carrossel />
-            </div>
+  return (
+    <div>
+      <div className="w-full">
+        <Carrossel />
+      </div>
 
-            <div className="w-full flex ">
-                <div className="w-[25%] border-r">
-                    25%
-                </div>
+      <div className="w-full flex ">
+       <SideBar/>
 
-                <div className="w-full px-8">
-                    <div className="max-w-[1350px] mx-auto grid grid-cols-1 sm:grid-cols-3  justify-items-center">
-                        <CardCarro />
-                        <CardCarro />
-                        <CardCarro />
-                        <CardCarro />
-                        <CardCarro />
-                        <CardCarro />
-                    </div>
-                </div>
-            </div>
+        <div className="w-full px-8">
+          <div className="max-w-[1350px] mx-auto grid grid-cols-1 sm:grid-cols-3  justify-items-center">
+            <CardCarro />
+            <CardCarro />
+            <CardCarro />
+            <CardCarro />
+            <CardCarro />
+            <CardCarro />
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

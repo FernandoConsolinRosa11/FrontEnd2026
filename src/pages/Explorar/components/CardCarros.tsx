@@ -4,7 +4,7 @@ import Button from "../../../components/Button"
 
 export default function CardCarro() {
   return (
-    <div className="w-full max-w-[325px] bg-[#ffff] text-black shadow-md overflow-hidden mt-5  border border-zinc-800 ">
+    <div className="w-full max-w-[325px] bg-[#ffff] text-black shadow-md overflow-hidden mb-5  border border-zinc-800 ">
       {/* Imagem responsiva */}
       <img
         src={Image}
