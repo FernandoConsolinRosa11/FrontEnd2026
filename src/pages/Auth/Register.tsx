@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
-import { cpfMask, zipCodeMask, phoneMask } from '../Auth/masks/masks.ts';
+import { cpfMask, cepMask, phoneMask } from '../Auth/masks/masks.ts';
 import {registerSchema} from '../Auth/masks/validationRegister.ts';
 import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
 
@@ -96,7 +96,7 @@ export default function Register() {
             <input
               {...register("cep")}
               value={values.cep || ""}
-              onChange={(e) => setValue("cep", zipCodeMask(e.target.value))}
+              onChange={(e) => setValue("cep", cepMask(e.target.value))}
               className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black focus:outline-blue-500"
               placeholder="CEP"
             />
