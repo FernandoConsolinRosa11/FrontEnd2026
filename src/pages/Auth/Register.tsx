@@ -7,6 +7,7 @@ import Checkbox from "../../components/checkbox.tsx";
 import { cpfMask, zipCodeMask, phoneMask } from '../Auth/masks/masks.ts';
 import {registerSchema} from '../Auth/masks/validationRegister.ts';
 import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
+import axios from "axios";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -23,9 +24,20 @@ export default function Register() {
 
   const values = watch();
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log("Formulário enviado com sucesso:", data);
-    // Aqui você faz o seu fetch/axios para o backend
+  const onSubmit = async (data: RegisterFormData) => {
+    try{
+      const response = await axios.post('http://localhost:3000/users',data);
+
+      if(response.status === 201){
+        alert('Associação realizada com sucesso! Bem-vindo à Prime Motors.')
+        navigate('/');
+      }
+    } catch (error:any){
+      const message = error.reponse?.data?.message || "Erro ao conectar com o servidor" ;
+      alert({message});
+      console.log(`Erro no cadastro: ${message}`);
+    }
+   
   };
 
   return (
