@@ -54,11 +54,11 @@ export default function Register() {
 
         <div className="flex flex-col gap-1">
           <input
-            {...register("nome")}
+            {...register("name")}
             className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
             placeholder="Nome completo"
           />
-          {errors.nome && <span className="text-red-500 text-xs">{errors.nome.message}</span>}
+          {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -84,12 +84,12 @@ export default function Register() {
 
         <div className="flex flex-col gap-1">
           <input
-            {...register("senha")}
+            {...register("password")}
             type="password"
             className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
-            placeholder="Senha"
+            placeholder="password"
           />
-          {errors.senha && <span className="text-red-500 text-xs">{errors.senha.message}</span>}
+          {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
