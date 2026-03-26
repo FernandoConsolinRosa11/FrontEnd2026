@@ -39,3 +39,13 @@ export interface CardGarageProps extends CardCarProps{
   status : 'Processando' | 'Entregue' | 'Cancelado';
   purchaseDate: string;
 }
+
+export interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  cep:string;
+  password:string;
+  number:string;
+}
