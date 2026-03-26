@@ -7,6 +7,7 @@ import Checkbox from "../../components/checkbox.tsx";
 import { cpfMask, zipCodeMask, phoneMask } from "../Auth/masks/masks.ts";
 import { registerSchema } from "../Auth/masks/validationRegister.ts";
 import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
+import { authStorage } from "../../utils/userLocalStorage.ts";
 import axios from "axios";
 
 export default function Register() {
@@ -26,21 +27,22 @@ export default function Register() {
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
-
       const cleanData = {
         ...data,
         cpf: data.cpf.replace(/\D/g, ""),
         number: data.number.replace(/\D/g, ""),
-        cep: data.cep.replace(/\D/g, "")
+        cep: data.cep.replace(/\D/g, ""),
       };
+
       const response = await axios.post(
         "http://localhost:3000/auth/users",
         cleanData,
       );
 
       if (response.status === 201) {
-        alert("Associação realizada com sucesso! Bem-vindo à Prime Motors.");
+        authStorage.saveUser(response.data.user);
         navigate("/");
+        window.location.reload();
       }
     } catch (error: any) {
       const errormessage =

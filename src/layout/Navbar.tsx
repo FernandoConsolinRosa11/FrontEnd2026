@@ -13,13 +13,9 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUser = authStorage.getUser();
+    const savedUser = authStorage.getUser(); 
     if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch (error) {
-        console.error("Erro ao ler dados do usuário", error);
-      }
+      setUser(savedUser);
     }
   }, []);
 
@@ -28,7 +24,7 @@ export default function Navbar() {
     setUser(null);
     navigate("/");
   };
-  
+
   return (
     <nav className="font-medium bg-[#121212] shadow-2xl py-3 sticky!  border-t!  border-zinc-800!">
       <div className="container-fluid flex items-center justify-between ">
