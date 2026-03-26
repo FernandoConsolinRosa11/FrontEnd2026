@@ -1,35 +1,80 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { authStorage } from "../utils/userLocalStorage";
+import type { UserData } from "../types/types";
 import Logo from "../assets/icons/logo.png";
 import Menu from "./Menu";
 import Button from "../components/Button";
-import { useState } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<UserData | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedUser = authStorage.getUser(); 
+    if (savedUser) {
+      setUser(savedUser);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    authStorage.removeUser();
+    setUser(null);
+    navigate("/");
+  };
 
   return (
-    <nav className="font-medium bg-[#121212] shadow-2xl py-3 relative">
-      <div className="container-fluid flex items-center justify-between">
+    <nav className="font-medium bg-[#121212] shadow-2xl py-3 sticky!  border-t!  border-zinc-800!">
+      <div className="container-fluid flex items-center justify-between ">
         <div className="flex-1 flex justify-start mx-2 relative">
           <Button
             texto="Menu"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-white flex items-center gap-2 text-[20px]"
+            className="text-white flex items-center gap-2 text-[20px] bi bi-list"
           />
-          {menuOpen && <Menu />}
         </div>
 
-        <div className="flex-1 flex justify-center">
-          <img src={Logo} alt="logo" className="text-center w-25" />
+        <div className="flex-1 flex justify-center m-0">
+          <Link to="/">
+            <img
+              src={Logo}
+              alt="logo"
+              className="text-center w-full size-22 m-auto "
+            />
+          </Link>
         </div>
 
         <div className="flex-1 flex justify-end gap-6 text-sm uppercase tracking-widest mx-2">
-          <Link to="/Login" className="text-white text-decoration-none">
-            Login
-          </Link>
-          <Link to="/Register" className="text-white text-decoration-none">
-            Cadastro
-          </Link>
+          <div className="flex-1 flex justify-end gap-6 text-sm uppercase tracking-widest mx-2">
+            {user ? (
+              <div className="flex items-center gap-4">
+                <span className="text-white normal-case font-bold">
+                  Olá, {user.name}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="text-red-600 text-xs hover:underline"
+                >
+                  Sair
+                </button>
+              </div>
+            ) : (
+              <>
+                <Button
+                  texto="Login"
+                  className="text-white flex items-center gap-2 text-[20px]"
+                  onClick={() => navigate("/Login")}
+                />
+                <Button
+                  texto="Cadastro"
+                  className="text-white flex items-center gap-2 text-[20px]"
+                  onClick={() => navigate("/Register")}
+                />
+              </>
+            )}
+          </div>
         </div>
       </div>
 
