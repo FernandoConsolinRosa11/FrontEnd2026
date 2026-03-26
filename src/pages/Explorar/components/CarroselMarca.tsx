@@ -1,22 +1,22 @@
 import { useState } from "react";
 import "./Carrosel.css";
+import { logos } from "./logos";
 
 export default function Carrosel() {
   const carros = [
-    "Todos",
-    "Lamborghini",
-    "Ferrari",
-    "Porsche",
-    "McLaren",
-    "Bugatti",
-    "Pagani",
-    "Koenigsegg",
-    "Rolls-Royce",
-    "Audi",
-    "BMW",
-    "Mercedes-Benz",
+    { nome: "Todos", logo: "" },
+    { nome: "Lamborghini", logo: logos.lamborghini },
+    { nome: "Ferrari", logo: logos.ferrari },
+    { nome: "Porsche", logo: logos.porsche },
+    { nome: "McLaren", logo: logos.mclaren },
+    { nome: "Bugatti", logo: logos.bugatti },
+    { nome: "Pagani", logo: logos.pagani },
+    { nome: "Koenigsegg", logo: logos.koenigsegg },
+    { nome: "Rolls-Royce", logo: logos.rolls },
+    { nome: "Audi", logo: logos.audi },
+    //{ nome: "BMW", logo: logos.bmw },
+    { nome: "Mercedes-Benz", logo: logos.mercedes },
   ];
-
   // duplicamos 3 vezes para criar loop infinito visual
   const extendedCarros = [...carros, ...carros, ...carros];
   const centerOffset = carros.length; // posição central da repetição do meio
@@ -24,12 +24,12 @@ export default function Carrosel() {
   const [index, setIndex] = useState(0);
 
   function proximo() {
-    setIndex((prev) => prev + 1);
-  }
+  setIndex((prev) => (prev + 1) % carros.length);
+}
 
-  function anterior() {
-    setIndex((prev) => prev - 1);
-  }
+function anterior() {
+  setIndex((prev) => (prev - 1 + carros.length) % carros.length);
+}
 
   return (
     <div className="carrossel-container mx-auto my-2">
@@ -55,9 +55,17 @@ export default function Carrosel() {
               else classe += " opacity-fraco";
 
               return (
-                <p key={i} className={classe}>
-                  {carro}
-                </p>
+                <div key={i} className={`${classe} flex items-center justify-center`}>
+                  {carro.nome === "Todos" ? (
+                    <div className="text-center">Todos</div>
+                  ) : (
+                    <img
+                      src={carro.logo}
+                      alt={carro.nome}
+                      className="w-[100px] h-[60px] object-contain"
+                    />
+                  )}
+                </div>
               );
             })}
           </div>

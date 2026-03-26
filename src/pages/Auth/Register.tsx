@@ -41,7 +41,7 @@ export default function Register() {
 
       if (response.status === 201) {
         authStorage.saveUser(response.data.user);
-        navigate("/");
+        navigate("/Login");
         window.location.reload();
       }
     } catch (error: any) {
