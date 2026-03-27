@@ -2,12 +2,15 @@ import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { authStorage } from "../../utils/userLocalStorage.ts";
-import axios from "axios"; // Importe o axios
+import { useState, useContext } from "react"; // Adicionado useContext
+import { AuthContext } from "../../contexts/AuthContext.tsx";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
+  // Puxamos a função login do nosso contexto global
+  const { login } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -23,14 +26,16 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        authStorage.saveUser(response.data.user);
-        localStorage.setItem("token", response.data.token);
+        // EXTRAÍMOS OS DADOS DA RESPOSTA
+        const { user, token } = response.data;
+
+        // AGORA O CONTEXTO GERENCIA O ESTADO GLOBAL E O LOCALSTORAGE
+        // Isso elimina a necessidade de window.location.reload()
+        login(user, token);
 
         navigate("/");
-        window.location.reload();
       }
     } catch (error: any) {
-      // O Axios cai no catch para erros 400, 401, 404, 500 etc.
       if (error.response) {
         setErrorMsg(error.response.data.message || "Erro ao fazer login.");
       } else if (error.request) {
@@ -42,6 +47,63 @@ export default function Login() {
     }
   };
 
+  return (
+    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
+      <div className="absolute inset-0 bg-login-screen opacity-75 py-10!" />
+      
+      <form
+        onSubmit={handleLogin}
+        className="flex-col gap-9 flex w-full glass-form m-6! scale-80 backdrop-blur-xl! border border-white/10!"
+      >
+        <h3 className="m-auto text-white text-center">
+          Acesse sua conta <span className="text-[#C59958]">Prime</span>
+        </h3>
+
+        {errorMsg && (
+          <div className="border-red-500/50 text-red-500 border-2 rounded-sm text-center font-medium">
+            {errorMsg}
+          </div>
+        )}
+
+        <input
+          className="p-2 bg-white rounded-sm placeholder-gray-700 text-black outline-none focus:ring-2 focus:ring-[#C59958]"
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          required
+        />
+
+        <input
+          className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black outline-none focus:ring-2 focus:ring-[#C59958]"
+          type="password"
+          placeholder="Senha"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          required
+        />
+
+        <span className="flex items-center">
+          <Checkbox texto="Manter-me Conectado" />
+        </span>
+
+        <div className="grid grid-cols-3 items-center w-full">
+          <Button
+            texto=" ← "
+            type="button"
+            className="text-white justify-self-start gap-2 text-[20px]"
+            onClick={() => navigate("/")}
+          />
+          <Button
+            texto="Confirmar"
+            className="text-white justify-self-center items-center gap-2 text-[20px] m-auto"
+            type="submit"
+          />
+        </div>
+      </form>
+    </div>
+  );
+}
   return (
     <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
       <div className="absolute inset-0 bg-login-screen opacity-75 py-10!" />

@@ -24,7 +24,7 @@ export default function Register() {
   });
 
   const values = watch();
-
+  
   const onSubmit = async (data: RegisterFormData) => {
     try {
       const cleanData = {
