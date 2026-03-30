@@ -9,6 +9,7 @@ import rolls from "./logo/Rolls-Royce-Logo.png";
 import audi from "./logo/audi-logo.png";
 import bmw from "./logo/bmw-logo-0.png";
 import mercedes from "./logo/Mercedes-Benz-Logo.png";
+import todos from "./logo/Todos.png";
 
 export const logos = {
   ferrari,
@@ -22,4 +23,5 @@ export const logos = {
   audi,
   bmw,
   mercedes,
+  todos,
 };

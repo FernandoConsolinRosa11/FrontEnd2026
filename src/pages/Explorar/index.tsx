@@ -15,11 +15,6 @@ export default function Explorar() {
         <div className="w-full px-8">
           <div className="max-w-[1350px] mx-auto grid grid-cols-1 sm:grid-cols-3  justify-items-center">
             <CardCarro />
-            <CardCarro />
-            <CardCarro />
-            <CardCarro />
-            <CardCarro />
-            <CardCarro />
           </div>
         </div>
       </div>

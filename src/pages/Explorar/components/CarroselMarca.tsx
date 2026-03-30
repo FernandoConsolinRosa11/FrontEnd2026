@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Carrosel.css";
 import { logos } from "./logos";
 
 export default function Carrosel() {
   const carros = [
-    { nome: "Todos", logo: "" },
+    { nome: "Todos", logo: logos.todos },
     { nome: "Lamborghini", logo: logos.lamborghini },
     { nome: "Ferrari", logo: logos.ferrari },
     { nome: "Porsche", logo: logos.porsche },
@@ -14,7 +14,7 @@ export default function Carrosel() {
     { nome: "Koenigsegg", logo: logos.koenigsegg },
     { nome: "Rolls-Royce", logo: logos.rolls },
     { nome: "Audi", logo: logos.audi },
-    //{ nome: "BMW", logo: logos.bmw },
+    { nome: "BMW", logo: logos.bmw },
     { nome: "Mercedes-Benz", logo: logos.mercedes },
   ];
   // duplicamos 3 vezes para criar loop infinito visual
@@ -22,14 +22,27 @@ export default function Carrosel() {
   const centerOffset = carros.length; // posição central da repetição do meio
 
   const [index, setIndex] = useState(0);
+  const [filtro, setFiltro] = useState("Todos");
 
+  useEffect(() => {
+  const filtroAtual = carros[index].nome;
+
+  setFiltro(filtroAtual);
+
+  console.log("Filtro atual:", filtroAtual);
+
+  // 👉 aqui você pode mandar pro backend
+  // exemplo:
+  // fetch(`http://localhost:3000/carros?marca=${filtroAtual}`)
+
+}, [index]);
   function proximo() {
-  setIndex((prev) => (prev + 1) % carros.length);
-}
+    setIndex((prev) => (prev + 1) % carros.length);
+  }
 
-function anterior() {
-  setIndex((prev) => (prev - 1 + carros.length) % carros.length);
-}
+  function anterior() {
+    setIndex((prev) => (prev - 1 + carros.length) % carros.length);
+  }
 
   return (
     <div className="carrossel-container mx-auto my-2">
@@ -56,20 +69,17 @@ function anterior() {
 
               return (
                 <div key={i} className={`${classe} flex items-center justify-center`}>
-                  {carro.nome === "Todos" ? (
-                    <div className="text-center">Todos</div>
-                  ) : (
-                    <img
-                      src={carro.logo}
-                      alt={carro.nome}
-                      className="w-[100px] h-[60px] object-contain"
-                    />
-                  )}
+                  <img
+                    src={carro.logo}
+                    alt={carro.nome}
+                    className="w-[100px] h-[70px] object-contain"
+                  />
                 </div>
               );
             })}
           </div>
         </div>
+
 
         <button onClick={proximo}>▶</button>
       </div>
