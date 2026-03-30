@@ -6,7 +6,15 @@ export const authStorage = {
   },
   getUser: () => {
     const data = localStorage.getItem(USER_KEY);
-    return data ? JSON.parse(data) : null;
+    if (!data || data === "undefined") {
+      return null;
+    }
+    try {
+      return JSON.parse(data);
+    } catch (error) {
+      console.error("Erro no JSON do LocalStorage:", error);
+      return null;
+    }
   },
   removeUser: () => {
     localStorage.removeItem(USER_KEY);

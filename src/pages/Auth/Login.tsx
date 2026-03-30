@@ -2,12 +2,14 @@ import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { authStorage } from "../../utils/userLocalStorage.ts";
-import axios from "axios"; // Importe o axios
+import { useState, useContext } from "react"; 
+import { AuthContext } from "../../contexts/authContext";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -23,14 +25,14 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        authStorage.saveUser(response.data.user);
-        localStorage.setItem("token", response.data.token);
+        // EXTRAÍMOS OS DADOS DA RESPOSTA
+        const { user, token } = response.data;
+
+        login(user, token);
 
         navigate("/");
-        window.location.reload();
       }
     } catch (error: any) {
-      // O Axios cai no catch para erros 400, 401, 404, 500 etc.
       if (error.response) {
         setErrorMsg(error.response.data.message || "Erro ao fazer login.");
       } else if (error.request) {
@@ -43,7 +45,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
+  <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
       <div className="absolute inset-0 bg-login-screen opacity-75 py-10!" />
       
       <form
@@ -98,4 +100,5 @@ export default function Login() {
       </form>
     </div>
   );
-}
+} 
+
