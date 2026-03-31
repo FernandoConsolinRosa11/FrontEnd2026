@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Home, Login, Register , ErrorPage, Explorar, Garagem} from "../pages";
 import Menu from "../layout/Menu";
+import UserProfile from "../pages/UserProfile";
 
 export default function AppRoutes() {
     return(
@@ -12,6 +13,7 @@ export default function AppRoutes() {
             <Route path="/Menu" element={<Menu/>} />
             <Route path="/Explorar" element={<Explorar/>} />
             <Route path="/Garagem" element={<Garagem/>} />
+            <Route path="/Perfil/:id" element={<UserProfile/>} />
         </Routes>
     )
 }
