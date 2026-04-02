@@ -36,7 +36,7 @@ if (!userData) {
     <div className=" bg-[#121212]  text-white font-sans py-10!">
       <div className="max-w-5xl mx-auto px-4  bg-[#12121269]">
         {/* Título da Página */}
-        <div className="mb-8 pb-4">
+        <div className="mb-8 pb-2">
           <h1 className="text-2xl font-light tracking-widest uppercase">
             Meu Perfil
           </h1>
