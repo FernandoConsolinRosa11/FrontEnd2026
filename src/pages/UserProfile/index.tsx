@@ -3,19 +3,34 @@ import { useParams } from "react-router-dom";
 import { userService } from "../../services/userService";
 
 const UserProfile = () => {
-
   const { id } = useParams<{ id: string }>();
   const [userData, setUserData] = useState<any>(null);
 
-  useEffect(() => {
-    if (id) {
-      userService.getProfile(id).then(data => {
-        setUserData(data);
-      });
+useEffect(() => {
+    if (id && id !== ":id" && id !== "undefined") {
+      userService
+        .getProfile(id)
+        .then((data) => {
+
+          console.log("Dados recebidos do banco:", data);
+
+          const profileData = data.user ? data.user : data;
+          
+          setUserData(profileData);
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar dados do usuário:", error);
+        });
     }
   }, [id]);
-
-  if(!userData) return <div>Não funcionou!</div>;
+  
+if (!userData) {
+  return (
+    <div className="bg-[#121212] min-h-screen flex items-center justify-center text-gray-500 tracking-widest uppercase">
+      Carregando Perfil...
+    </div>
+  );
+}
 
   return (
     <div className=" bg-[#121212]  text-white font-sans py-10!">
@@ -33,7 +48,7 @@ const UserProfile = () => {
               Usuário
             </span>
             <h2 className="text-3xl font-italic italic font-semibold tracking-tight ">
-              Fernando Consolin Rosa
+              {userData.name}
             </h2>
           </div>
 
@@ -44,7 +59,7 @@ const UserProfile = () => {
                 Email
               </span>
               <span className="text-lg font-medium break-all ml-4">
-                fernandoconsolinrosa11@gmail.com
+                {userData.email}
               </span>
             </div>
 
@@ -53,7 +68,9 @@ const UserProfile = () => {
                 Senha
               </span>
               <div className="flex items-center gap-3">
-                <span className="text-lg font-medium text-white tracking-tighter">••••••••</span>
+                <span className="text-lg font-medium text-white tracking-tighter">
+                  {userData.password}
+                </span>
                 <button className="hover:text-gray-400! transition-colors  scale-105 py ">
                   <i className="bi bi-pencil-square"></i>
                 </button>
@@ -64,25 +81,24 @@ const UserProfile = () => {
               <span className="text-lg uppercase tracking-widest text-gray-400">
                 CEP
               </span>
-              <span className="text-lg font-medium">87240-000</span>
+              <span className="text-lg font-medium">{userData.cep}</span>
             </div>
 
             <div className="flex justify-between items-center border-b border-gray-800 pb-2">
               <span className="text-lg uppercase tracking-widest text-gray-400">
                 CPF
               </span>
-              <span className="text-lg font-medium">098.996.319-57</span>
+              <span className="text-lg font-medium">{userData.cpf}</span>
             </div>
 
             <div className="flex justify-between items-center border-b border-gray-800 pb-2">
               <span className="text-lg uppercase tracking-widest text-gray-400">
                 Telefone
               </span>
-              <span className="text-lg font-medium">55 44 99958-3036</span>
+              <span className="text-lg font-medium">{userData.number}</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react"; 
+import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import axios from "axios";
 
@@ -25,11 +25,12 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        // EXTRAÍMOS OS DADOS DA RESPOSTA
         const { user, token } = response.data;
 
-        login(user, token);
+        // IMPORTANTE: Verifique no console se 'user' aqui tem o ID
+        console.log("Dados do usuário vindos do login:", user);
 
+        login(user, token); // Aqui ele entra no seu AuthContext e o ID é normalizado
         navigate("/");
       }
     } catch (error: any) {
@@ -45,9 +46,9 @@ export default function Login() {
   };
 
   return (
-  <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
+    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
       <div className="absolute inset-0 bg-login-screen opacity-75 py-10!" />
-      
+
       <form
         onSubmit={handleLogin}
         className="flex-col gap-9 flex w-full glass-form m-6! scale-80 backdrop-blur-xl! border border-white/10!"
@@ -100,5 +101,4 @@ export default function Login() {
       </form>
     </div>
   );
-} 
-
+}
