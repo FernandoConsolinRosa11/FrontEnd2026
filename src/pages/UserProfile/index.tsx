@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { userService } from "../../services/userService";
-import Button from "../../components/Button";
 
 const UserProfile = () => {
-  
- const { id } = useParams<{ id: string }>(); 
+
+  const { id } = useParams<{ id: string }>();
   const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
     if (id) {
-      // Quando a tela carrega, ele vai no banco via API
       userService.getProfile(id).then(data => {
         setUserData(data);
       });
     }
   }, [id]);
 
-  if (!userData) return <div>Carregando...</div>;
+  if(!userData) return <div>Não funcionou!</div>;
 
   return (
     <div className=" bg-[#121212]  text-white font-sans py-10!">
@@ -50,11 +48,16 @@ const UserProfile = () => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center border-b border-gray-800 pb-2">
+            <div className="flex items-center justify-between border-b border-gray-800 pb-2">
               <span className="text-lg uppercase tracking-widest text-gray-400">
                 Senha
               </span>
-              <span className="text-lg font-medium">••••••••</span>
+              <div className="flex items-center gap-3">
+                <span className="text-lg font-medium text-white tracking-tighter">••••••••</span>
+                <button className="hover:text-gray-400! transition-colors  scale-105 py ">
+                  <i className="bi bi-pencil-square"></i>
+                </button>
+              </div>
             </div>
 
             <div className="flex justify-between items-center border-b border-gray-800 pb-2">
@@ -80,13 +83,6 @@ const UserProfile = () => {
           </div>
         </div>
 
-        {/* Botão de Ação */}
-        <div className="mt-8 flex justify-end">
-          <Button
-            texto="EDITAR PERFIL"
-            className=" border border-white text-white px-8 py-2  hover:text-black transition-all duration-300 text-xs tracking-widest font-bold "
-          />
-        </div>
       </div>
     </div>
   );

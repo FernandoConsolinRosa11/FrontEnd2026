@@ -51,7 +51,7 @@ export default function Navbar() {
             {user ? (
               <div className="flex items-center gap-4">
                 <span className="text-white normal-case font-bold">
-                  Olá, {user.name}
+                  <Link to={`/Perfil/${user.id}`}>Olá, {user.name}</Link>
                 </span>
                 <button
                   onClick={handleLogout}

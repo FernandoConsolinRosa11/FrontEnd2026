@@ -3,6 +3,7 @@ import { authStorage } from "../utils/userLocalStorage";
 import type {ReactNode} from 'react'
 
 interface User {
+  id : string;
   name: string;
   email: string;
   cpf: string;
