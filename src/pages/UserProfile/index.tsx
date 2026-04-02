@@ -69,7 +69,7 @@ if (!userData) {
               </span>
               <div className="flex items-center gap-3">
                 <span className="text-lg font-medium text-white tracking-tighter">
-                  {userData.password}
+                  ••••••••••••••
                 </span>
                 <button className="hover:text-gray-400! transition-colors  scale-105 py ">
                   <i className="bi bi-pencil-square"></i>
