@@ -17,7 +17,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="font-medium bg-[#121212] shadow-2xl py-3  top-0 z-50 border-t border-zinc-800">
+    <nav className="font-medium bg-[#121212] shadow-2xl py-3  top-0 z-50 border-t border-b border-zinc-800">
       <div className="container-fluid flex items-center justify-between">
         
         <div className="flex-1 flex justify-start mx-2 relative">

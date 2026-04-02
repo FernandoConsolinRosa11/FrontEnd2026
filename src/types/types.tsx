@@ -49,3 +49,18 @@ export interface UserData {
   password:string;
   number:string;
 }
+
+export interface EditFieldFormProps {
+  label: string;
+  type?: string;
+  defaultValue?: string;
+  onSave: (value: string) => void;
+}
+
+export interface UserData {
+  name: string;
+  email: string;
+  cep: string;
+  cpf: string;
+  number: string;
+}
