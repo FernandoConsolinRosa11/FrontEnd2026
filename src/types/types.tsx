@@ -50,11 +50,11 @@ export interface UserData {
   number:string;
 }
 
-export interface EditFieldFormProps {
+export interface EditConfig {
   label: string;
   type?: string;
   defaultValue?: string;
-  onSave: (value: string) => void;
+  maxLength?: number; 
 }
 
 export interface UserData {
@@ -63,4 +63,10 @@ export interface UserData {
   cep: string;
   cpf: string;
   number: string;
+}
+
+export interface InfoRowProps {
+  label: string;
+  value: string;
+  onEdit?: () => void;
 }
