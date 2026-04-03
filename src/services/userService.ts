@@ -44,8 +44,5 @@ export const userService = {
     }
   },
 
-  deleteProfile: async (id: string) => {
-    const response = await api.delete(`/users/${id}`);
-    return response.data;
-  },
+  deleteProfile: (id: string) => api.delete(`/users/${id}`),
 };

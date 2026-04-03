@@ -58,7 +58,7 @@ const UserProfile = () => {
 const handleDelete = async () => {
   if (!id || !window.confirm("Deseja desativar seu perfil?")) return;
   try {
-    await userService.deleteProfile(id); // Chama a API
+    await userService.deleteProfile(id); 
     localStorage.removeItem("token");
     alert("Perfil desativado com sucesso.");
     navigate("/login"); // Redireciona

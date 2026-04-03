@@ -6,17 +6,21 @@ import "./App.css";
 
 function App() {
   const location = useLocation();
-  const hideNavbarAndFooter = ["/Login", "/Register"];
-  const isLoginOrRegister = hideNavbarAndFooter.includes(location.pathname);
+ 
+  const currentPath = location.pathname.toLowerCase();
+
+  const hideLayout = ["/login", "/register"];
+  const shouldHide = hideLayout.includes(currentPath);
 
   return (
-  
     <AuthProvider>
-      {!isLoginOrRegister && <Navbar />}
+      {!shouldHide && <Navbar />}
 
-      <AppRoutes />
+      <main className="content">
+        <AppRoutes />
+      </main>
 
-      {!isLoginOrRegister && <Footer />}
+      {!shouldHide && <Footer />}
     </AuthProvider>
   );
 }
