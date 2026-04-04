@@ -49,3 +49,24 @@ export interface UserData {
   password:string;
   number:string;
 }
+
+export interface EditConfig {
+  label: string;
+  type?: string;
+  defaultValue?: string;
+  maxLength?: number; 
+}
+
+export interface UserData {
+  name: string;
+  email: string;
+  cep: string;
+  cpf: string;
+  number: string;
+}
+
+export interface InfoRowProps {
+  label: string;
+  value: string;
+  onEdit?: () => void;
+}

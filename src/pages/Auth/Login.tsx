@@ -2,9 +2,9 @@ import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react"; 
+import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
-import axios from "axios";
+import { authService } from "../../services/authService";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,35 +19,25 @@ export default function Login() {
     setErrorMsg(null);
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const { user, token } = await authService.login({ email, password });
 
-      if (response.status === 200) {
-        // EXTRAÍMOS OS DADOS DA RESPOSTA
-        const { user, token } = response.data;
+      console.log("Login bem-sucedido. Usuário:", user);
 
-        login(user, token);
+      login(user, token);
 
-        navigate("/");
-      }
-    } catch (error: any) {
-      if (error.response) {
-        setErrorMsg(error.response.data.message || "Erro ao fazer login.");
-      } else if (error.request) {
-        setErrorMsg("Servidor fora do ar. Tente mais tarde.");
-      } else {
-        setErrorMsg("Ocorreu um erro inesperado.");
-      }
-      console.error("Erro no login:", error);
+      navigate("/");
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Erro ao realizar login.";
+      setErrorMsg(errorMessage);
+      console.error("Erro capturado no componente:", error);
     }
   };
 
   return (
-  <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
+    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
       <div className="absolute inset-0 bg-login-screen opacity-75 py-10!" />
-      
+
       <form
         onSubmit={handleLogin}
         className="flex-col gap-9 flex w-full glass-form m-6! scale-80 backdrop-blur-xl! border border-white/10!"
@@ -57,7 +47,7 @@ export default function Login() {
         </h3>
 
         {errorMsg && (
-          <div className=" border-red-500/50 text-red-500 border-2 rounded-sm text-center font-medium">
+          <div className="border-red-500/50 text-red-500 border-2 rounded-sm text-center font-medium">
             {errorMsg}
           </div>
         )}
@@ -100,5 +90,4 @@ export default function Login() {
       </form>
     </div>
   );
-} 
-
+}
