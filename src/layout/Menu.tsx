@@ -12,7 +12,7 @@ export default function Menu() {
             <FaChevronRight />
           </Link>
 
-          <Link to={'/Garagem'}  className="flex justify-between items-center animation me-4 border-b-2 p-1">
+          <Link to={`/Garagem/:id`}  className="flex justify-between items-center animation me-4 border-b-2 p-1">
             <span>Garagem</span>
             <FaChevronRight />
           </Link>
