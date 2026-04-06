@@ -18,17 +18,16 @@ export interface Review {  //Reviews Carrossel Home
 export interface CardCarProps { 
   id: string;
   brand: string;      // Ex: "Porsche"
-  name: string;       // O nome real do carro (Ex: "911 Carrera GTS")
+  name: string;       
   price: number;
   imgUrl: string;
   category?: string;   // Ex: "Esportivo"
   year?: string;
-  kilometers?: number;
   specs?: {
     engine?: string;   // Ex: "4.0 V8"
     drive?: string;    // Ex: "4x4"
     transmission: string; // Ex: "Automático"
-    fuel?:string; // flex / gasolina / diesel
+    fuel?:string; 
     maxSpeed?:number;
     zeroToHundred?:number; 
   }
