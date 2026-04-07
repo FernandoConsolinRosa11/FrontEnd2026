@@ -1,9 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import {cars} from "../../../data/bannerCar";
+import Button from "../../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function CarrouselCar() {
+  const navigate = useNavigate();
   return (
+    
     <div className="justify-self-center w-full vh-300 overflow-hidden ">
       <h2 className="text-center my-5 text-[#C59958]!">Encontre sua próxima obra-prima</h2>
       <div className="relative  bg-white py-10 ">
@@ -46,9 +50,8 @@ export default function CarrouselCar() {
                     <button className="bg-[#C59958] text-white px-4 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] transition-all  ">
                       Explorar Modelo <span>→</span>
                     </button>
-                    <button className="border border-[#121212] px-4 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] hover:text-white transition-all ">
-                      Ver Mais <span>↓</span>
-                    </button>
+                    <Button texto="Ver Mais  ↓" className="border border-[#121212] px-4 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] hover:text-white transition-all " onClick={()=>{navigate('/Explorar')}}/>
+            
                   </div>
                 </div>
               )}
