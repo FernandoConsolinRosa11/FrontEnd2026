@@ -1,79 +1,29 @@
-import { useEffect, useState, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { userService } from "../../services/userService";
-import { Modal } from "./components/modal";
-import { EditFieldForm } from "./components/editFieldForm";
-import type { UserData } from "../../types/types";
-import Button from "../../components/Button";
-import InfoRow from "./components/infoRow";
+import { 
+  Button, 
+  InfoRow, 
+  LoginExpired, 
+  Loading, 
+  Modal, 
+  EditFieldForm, 
+  useUserProfile, 
+  useParams, 
+  isTokenExpired 
+} from './Components';
 
 const UserProfile = () => {
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [activeModal, setActiveModal] = useState<"password" | "phone" | null>(
-    null,
-  );
-  const [isLoading, setIsLoading] = useState(true);
+  const { 
+    userData, isLoading, activeModal, 
+    setActiveModal, handleUpdate, handleDelete 
+  } = useUserProfile(id);
 
-  const fetchUserProfile = useCallback(async () => {
-    if (!id || id === ":id" || id === "undefined") return;
 
-    try {
-      const data = await userService.getProfile(id);
-      const profileData = data.user ?? data;
-      setUserData(profileData);
-    } catch (error) {
-      console.error("Erro ao carregar dados do usuário:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    fetchUserProfile();
-  }, [fetchUserProfile]);
-
-  // 2. Handler único de atualização
-  const handleUpdate = async (
-    field: keyof UserData | "password",
-    value: string,
-  ) => {
-    try {
-      const updatedUser = await userService.updateProfile(id!, {
-        [field]: value,
-      });
-
-      // Atualiza o estado apenas se a API retornar sucesso
-      setUserData(updatedUser);
-      setActiveModal(null);
-      console.log(`${field} atualizado com sucesso!`);
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "Erro ao atualizar.";
-      alert(msg);
-      console.error("Erro capturado:", err);
-    }
-  };
-
-const handleDelete = async () => {
-  if (!id || !window.confirm("Deseja desativar seu perfil?")) return;
-  try {
-    await userService.deleteProfile(id); 
-    localStorage.removeItem("token");
-    alert("Perfil desativado com sucesso.");
-    navigate("/login"); // Redireciona
-  } catch (err) {
-    alert("Erro ao desativar perfil.");
-    console.log(err);
-    
-  }
-};
   if (isLoading) {
-    return (
-      <div className="bg-[#121212] min-h-screen flex items-center justify-center text-gray-500 tracking-widest uppercase">
-        Carregando Perfil...
-      </div>
-    );
+    return <Loading />;
+  }
+
+  if (isTokenExpired()) {
+    return <LoginExpired />;
   }
 
   return (

@@ -31,9 +31,6 @@ export default function Carrosel() {
 
   console.log("Filtro atual:", filtroAtual);
 
-  // 👉 aqui você pode mandar pro backend
-  // exemplo:
-  // fetch(`http://localhost:3000/carros?marca=${filtroAtual}`)
 
 }, [index]);
   function proximo() {
