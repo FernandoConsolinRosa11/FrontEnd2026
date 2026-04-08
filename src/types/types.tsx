@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react';
 
 export type InputProps = {
   texto?: string;
   onClick?: () => void;
   className?: string; 
   type?: 'button' | 'submit' | 'reset';
+  children?: ReactNode;
 };
 
 export interface Review {  //Reviews Carrossel Home
@@ -68,4 +70,9 @@ export interface InfoRowProps {
   label: string;
   value: string;
   onEdit?: () => void;
+}
+
+export interface FavoriteData {
+  userId: string;
+  carId: string;
 }
