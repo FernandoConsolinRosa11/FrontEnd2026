@@ -1,21 +1,27 @@
 import AppRoutes from "./routes/AppRoutes";
 import { Navbar, Footer } from "./layout";
 import { useLocation } from "react-router-dom";
+import { AuthProvider } from "./contexts/authContext";
 import "./App.css";
 
 function App() {
   const location = useLocation();
-  const hideNavbarAndFooter = ["/Login", "/Register"];
-  const isLoginOrRegister = hideNavbarAndFooter.includes(location.pathname);
+ 
+  const currentPath = location.pathname.toLowerCase();
+
+  const hideLayout = ["/login", "/register"];
+  const shouldHide = hideLayout.includes(currentPath);
 
   return (
-    <>
-      {!isLoginOrRegister && <Navbar />}
+    <AuthProvider>
+      {!shouldHide && <Navbar />}
 
-      <AppRoutes />
+      <main className="content">
+        <AppRoutes />
+      </main>
 
-      {!isLoginOrRegister && <Footer />}
-    </>
+      {!shouldHide && <Footer />}
+    </AuthProvider>
   );
 }
 
