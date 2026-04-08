@@ -6,7 +6,7 @@ export default function ProdutoCard() {
           <div className="bg-white rounded-t-sm rounded-b-none shadow-sm border border-gray-200 overflow-hidden mb-6 p-3!">
             <div className="flex flex-col md:flex-row">
               <div className="w-full md:w-20 flex md:flex-col gap-2 p-2 border-b md:border-b-0 md:border-r border-gray-100 gallery-scrollbar overflow-x-auto md:overflow-y-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <button className="shrink-0 w-16 h-16 border-2 border-blue-60shrink-0.5 focus:outline-none">img</button>
+                <button className="shrink-0 w-16 h-16 border-2 border-blue-60 shrink-0.5 focus:outline-none">img</button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
