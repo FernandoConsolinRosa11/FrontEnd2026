@@ -2,7 +2,7 @@ import Button from "../../../components/Button";
 import type { CardCarProps } from "../../../types/types";
 
 export default function CardCarro({ carro }: { carro: CardCarProps }) {
-  
+
   if (!carro) return <div className="animate-pulse bg-gray-200 w-full h-64"></div>;
   // Função para formatar o preço de forma limpa
   const formatPrice = (value: number) => {
@@ -18,17 +18,17 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
       <img
         src={carro.imgUrl}
         alt={`${carro.brand} ${carro.name}`}
-        className="w-full h-48 md:h-56 lg:h-64 object-cover"
+        className="w-full h-48 md:h-56 lg:h-64 object-cover object-center"
       />
 
       <div className="p-4">
         {/* Título dinâmico: Marca + Nome */}
-        <h6 className="text-xl font-bold mb-2">
+        <h6 className="text-xl font-bold line-clamp-2 min-h-[56px]">
           {carro.brand} <span className="font-medium text-gray-600">{carro.name}</span>
         </h6>
-        
+
         {/* Renderização condicional das specs (motor, tração, transmissão) */}
-        <p className="text-gray-700 text-sm mb-2">
+        <p className="text-gray-700 text-sm mb-2 line-clamp-2 min-h-[40px]">
           {carro.specs?.engine} {carro.specs?.fuel} {carro.specs?.transmission}
         </p>
 
@@ -52,7 +52,7 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
           {formatPrice(carro.price)}
         </h6>
 
-        <Button texto='Ver Parcelas' className="bg-[#121212] text-white w-full"/>
+        <Button texto='Ver Parcelas' className="bg-[#121212] text-white w-full" />
       </div>
     </div>
   );

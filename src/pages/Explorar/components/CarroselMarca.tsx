@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Carrosel.css";
 import { logos } from "./logos";
+
 type Props = {
   onChangeMarca: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -25,7 +26,7 @@ export default function Carrossel({ onChangeMarca }: Props) {
   const centerOffset = carros.length; // posição central da repetição do meio
 
   const [index, setIndex] = useState(0);
-  const [filtro, setFiltro] = useState("Todos");
+  const [,setFiltro] = useState("Todos");
 
   useEffect(() => {
   const filtroAtual = carros[index].nome;
