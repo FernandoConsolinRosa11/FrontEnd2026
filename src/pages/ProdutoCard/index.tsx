@@ -1,5 +1,32 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { CardCarProps } from "../../types/types";
+
 export default function ProdutoCard() {
+
+  const { id } = useParams();
+  const [carro, setCarro] = useState<CardCarProps | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchCarro() {
+      try {
+        const res = await fetch(`http://localhost:3000/cars/${id}`);
+        const data = await res.json();
+        setCarro(data);
+      } catch (err) {
+        console.error("Erro:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (id) fetchCarro();
+  }, [id]);
+
+  if (loading) return <div className="h-screen bg-[#121212] flex items-center justify-center text-white">Carregando...</div>;
+  if (!carro) return <div className="h-screen bg-[#121212] flex items-center justify-center text-white">Carro não encontrado.</div>;
   return (
+
     <div className="bg-[#121212]">
       <div >
         <main className="mx-auto max-w-7xl p-4 md:p-8">
@@ -17,17 +44,22 @@ export default function ProdutoCard() {
                 </button>
               </div>
 
-              <div className="grow bg-white flex items-center justify-center p-4 md:p-8 border-b md:border-b-0 md:border-r border-gray-100">img</div>
-
+              <div className="grow bg-white flex items-center justify-center p-4 md:p-8 border-b md:border-b-0 md:border-r border-gray-100">
+                <img
+                  src={carro.imgUrl}
+                  alt={carro.name}
+                  className="max-h-[450px] object-contain"
+                />
+              </div>
               <div className="w-full md:w-[380px]  flex flex-col ">
                 <div className="flex justify-between items-start mb-1">
                   <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter leading-none">
-                    Mercedes-Benz <span className="text-[#C59958]">GLE 400d</span>
+                    {carro.brand} <span className="text-[#C59958]">{carro.name}</span>
                   </h1>
-                 
+
                 </div>
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100">
-                  3.0 V6 DIESEL COUPÉ 4MATIC 9G-TRONIC
+                  {carro.specs?.engine} {carro.specs?.fuel} {carro.specs?.transmission}
                 </p>
 
                 <div className="mb-8">
@@ -36,7 +68,7 @@ export default function ProdutoCard() {
                   </p>
                   <p className="text-5xl font-black text-gray-950 tracking-tighter">
                     <span className="text-2xl font-bold align-top">R$</span>{" "}
-                    719.900
+                    {carro.price.toLocaleString('pt-BR')}
                   </p>
                 </div>
 
@@ -63,7 +95,7 @@ export default function ProdutoCard() {
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
                       Câmbio
                     </p>
-                    <p className="font-bold text-gray-900">Automática (9G)</p>
+                    <p className="font-bold text-gray-900">{carro.specs?.transmission}</p>
                   </div>
                 </div>
 
@@ -85,19 +117,13 @@ export default function ProdutoCard() {
               <div className="space-y-1">
                 <p className="text-sm font-black">Motorização</p>
                 <p className="text-xs font-bold text-gray-600">
-                  3.0 V6 Diesel
+                  {carro.specs?.engine}
                 </p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm font-black">Tração</p>
+                <p className="text-sm font-black">Transmissão</p>
                 <p className="text-xs font-bold text-gray-600">
-                  4MATIC (Integral)
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Carroceria</p>
-                <p className="text-xs font-bold text-gray-600">
-                  Utilitário esportivo (Coupé)
+                  {carro.specs?.transmission}
                 </p>
               </div>
               <div className="space-y-1">
