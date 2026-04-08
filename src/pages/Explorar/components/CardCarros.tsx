@@ -1,7 +1,17 @@
 import Button from "../../../components/Button";
 import type { CardCarProps } from "../../../types/types";
+import { useNavigate } from "react-router-dom";
+
 
 export default function CardCarro({ carro }: { carro: CardCarProps }) {
+
+  const navigate = useNavigate();
+
+  console.log("Dados do carro recebidos no Card:", carro);
+
+  const handleNavigation = () => {
+    navigate(`/Explorar/${carro.id}`);
+  };
 
   if (!carro) return <div className="animate-pulse bg-gray-200 w-full h-64"></div>;
   // Função para formatar o preço de forma limpa
@@ -52,7 +62,11 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
           {formatPrice(carro.price)}
         </h6>
 
-        <Button texto='Ver Parcelas' className="bg-[#121212] text-white w-full" />
+        <Button
+          texto='Detalhes'
+          onClick={handleNavigation}
+          className="bg-[#121212] text-white w-full"
+        />
       </div>
     </div>
   );
