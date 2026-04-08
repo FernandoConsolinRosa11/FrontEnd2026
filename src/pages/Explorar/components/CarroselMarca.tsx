@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import "./Carrosel.css";
 import { logos } from "./logos";
+type Props = {
+  onChangeMarca: React.Dispatch<React.SetStateAction<string>>;
+};
 
-export default function Carrosel() {
+export default function Carrossel({ onChangeMarca }: Props) {
   const carros = [
     { nome: "Todos", logo: logos.todos },
     { nome: "Lamborghini", logo: logos.lamborghini },
@@ -31,6 +34,7 @@ export default function Carrosel() {
 
   console.log("Filtro atual:", filtroAtual);
 
+   onChangeMarca(filtroAtual)
 
 }, [index]);
   function proximo() {
