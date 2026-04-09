@@ -25,13 +25,15 @@ export interface CardCarProps {
   imgUrl: string;
   category?: string;   // Ex: "Esportivo"
   year?: string;
+  model?: string;
   specs?: {
     engine?: string;   // Ex: "4.0 V8"
     drive?: string;    // Ex: "4x4"
     transmission: string; // Ex: "Automático"
     fuel?:string; 
-    maxSpeed?:number;
+    max_speed?:number;
     zeroToHundred?:number; 
+    color?: string;
   }
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
 }

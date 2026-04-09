@@ -28,13 +28,13 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
       <img
         src={carro.imgUrl}
         alt={`${carro.brand} ${carro.name}`}
-        className="w-full h-48 md:h-56 lg:h-64 object-cover object-center"
+        className="w-full h-48 md:h-56 lg:h-64 object-fill object-center"
       />
 
       <div className="p-4">
         {/* Título dinâmico: Marca + Nome */}
         <h6 className="text-xl font-bold line-clamp-2 min-h-[36px]">
-          {carro.brand} <span className="font-medium text-gray-600">{carro.name}</span>
+        <span className="font-medium text-gray-600">{carro.name}</span>
         </h6>
 
         {/* Renderização condicional das specs (motor, tração, transmissão) */}

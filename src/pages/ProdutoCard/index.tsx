@@ -47,19 +47,19 @@ export default function ProdutoCard() {
               <div className="grow bg-white flex items-center justify-center p-4 md:p-8 border-b md:border-b-0 md:border-r border-gray-100">
                 <img
                   src={carro.imgUrl}
-                  alt={carro.name}
+                  alt={carro.name} 
                   className="max-h-[450px] object-contain"
                 />
               </div>
               <div className="w-full md:w-[380px]  flex flex-col ">
                 <div className="flex justify-between items-start mb-1">
                   <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter leading-none">
-                    {carro.brand} <span className="text-[#C59958]">{carro.name}</span>
+                    <span className="text-[#C59958]">{carro.name}</span>
                   </h1>
 
                 </div>
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100">
-                  {carro.specs?.engine} {carro.specs?.fuel} {carro.specs?.transmission}
+                  {carro.specs?.engine} {carro.specs?.fuel} {carro.specs?.transmission} 
                 </p>
 
                 <div className="mb-8">
@@ -130,36 +130,40 @@ export default function ProdutoCard() {
                 <p className="text-sm font-black">Potência</p>
                 <p className="text-xs font-bold text-gray-600">400 CV</p>
               </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Bancos</p>
-                {Array.isArray(carro.features) ? (
-                  carro.features.map((item: any, index: number) => (
-                    <p key={index} className="text-xs font-bold text-gray-600">
-                      {typeof item === 'object' ? item.name : item}
-                    </p>
-                  ))
-                ) : (
-                  <p className="text-xs text-gray-400">Dados não disponíveis</p>
-                )}
-              </div>
+             
               <div className="space-y-1">
                 <p className="text-sm font-black">Velocidade Máxima</p>
                 <p className="text-xs font-bold text-gray-600">
-                  {carro.specs?.maxSpeed}
+                 {carro.specs?.max_speed}
                 </p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm font-black">Tecnologia</p>
+                <p className="text-sm font-black">Cor</p>
                 <p className="text-xs font-bold text-gray-600">
-                  MBUX com telas de 12.3"
+                 {carro.specs?.color}
                 </p>
               </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Segurança</p>
+               <div className="space-y-1">
+                <p className="text-sm font-black">Modelo</p>
                 <p className="text-xs font-bold text-gray-600">
-                  Pacote Driving Assistance
+                 {carro.model}
                 </p>
               </div>
+              
+              </div>
+               <div className="space-y-1">
+                <p className="text-sm font-black">Itens</p>
+                <div className="flex gap-5! whitespace-nowrap">
+                  {Array.isArray(carro.features) ? (
+                    carro.features.map((item: any, index: number) => (
+                      <p key={index} className="text-xs font-bold text-slate-50 bg-[#C59958] p-2! ">
+                        {typeof item === 'object' ? item.name : item}
+                      </p>
+                    ))
+                  ) : (
+                    <p className="text-xs text-gray-400">Dados não disponíveis</p>
+                  )}
+                </div>
             </div>
           </div>
         </main>
