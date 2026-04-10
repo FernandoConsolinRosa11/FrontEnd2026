@@ -16,12 +16,13 @@ export default function ProdutoCard() {
         const res = await fetch(`http://localhost:3000/cars/${id}`);
         const data = await res.json();
         setCarro(data);
-      } catch (err) {
-        console.error("Erro:", err);
+      } catch (error) {
+        console.error("Erro ao buscar carro:", error);
       } finally {
         setLoading(false);
       }
     }
+
     if (id) fetchCarro();
   }, [id]);
 
@@ -49,7 +50,6 @@ export default function ProdutoCard() {
                   img
                 </button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
-                  img
                 </button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
                   img
@@ -57,18 +57,17 @@ export default function ProdutoCard() {
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
                   img
                 </button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-300 rounded p-0.5 focus:outline-none transition relative group">
-                  <div className="absolute inset-0.5 bg-black/60 rounded-sm flex items-center justify-center group-hover:bg-black/70 transition">
-                    <span className="text-white font-bold text-xl">+8</span>
-                  </div>
-                </button>
+                <button className="shrink-0 w-16 h-16 border-2 border-blue-60shrink-0.5 focus:outline-none">img</button>
+                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
+                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
+                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
               </div>
 
               <div className="grow bg-white flex items-center justify-center p-4 md:p-8 border-b md:border-b-0 md:border-r border-gray-100">
                 <img
                   src={carro.imgUrl}
                   alt={carro.name}
-                  className="max-h-[450px] object-contain"
+                  className="max-h-[450px] object-contain "
                 />
               </div>
               <div className="w-full md:w-[380px]  flex flex-col ">
@@ -92,10 +91,10 @@ export default function ProdutoCard() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-x-4 gap-y-6 text-sm mb-8">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-6 text-sm ">
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                     <i className="bi bi-geo-alt-fill"></i> Cidade
+                      <i className="bi bi-geo-alt-fill"></i> Cidade
                     </p>
                     <p className="font-bold text-gray-900">Curitiba - PR</p>
                   </div>
@@ -103,13 +102,7 @@ export default function ProdutoCard() {
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
                       <i className="bi bi-calendar2-week"></i>  Ano
                     </p>
-                    <p className="font-bold text-gray-900">2023 / 2023</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                     <i className="bi bi-speedometer"></i> KM
-                    </p>
-                    <p className="font-bold text-gray-900">12.500 km</p>
+                    <p className="font-bold text-gray-900">{carro.year}</p>
                   </div>
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
@@ -119,22 +112,27 @@ export default function ProdutoCard() {
                       {carro.specs?.transmission}
                     </p>
                   </div>
+                  <div className="space-y-1">
+                    <p className="text-[11px] uppercase font-bold text-gray-400 tracking-widerk">Modelo</p>
+                    <p className="font-bold text-gray-900">{carro.model}</p>
+                  </div>
                 </div>
 
-                <div className="mt-auto pt-6 border-t border-gray-100">
+                <div className="mt-5 pt-6 border-t border-gray-100">
                   <Button
                     texto="Iniciar Proposta"
                     className="w-full bg-[#C59958] hover:bg-[#997847]! text-white font-black py-4 rounded-lg transition  uppercase tracking-wider text-sm"
                     onClick={() => setIsModalOpen(true)}
                   />
-                  
+
                   {isModalOpen && (
                     <ProposalModal
                       carId={id as string}
-                      userId="ID_DO_USUARIO_LOGADO"
-                      onClose={() => setIsModalOpen(false) }
+                      isOpen={isModalOpen}
+                      userId={id as string}
+                      onClose={() => setIsModalOpen(false)}
                     />
-                  ) }
+                  )}
                 </div>
               </div>
             </div>
@@ -174,10 +172,6 @@ export default function ProdutoCard() {
                 <p className="text-xs font-bold text-gray-600">
                   {carro.specs?.color}
                 </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Modelo</p>
-                <p className="text-xs font-bold text-gray-600">{carro.model}</p>
               </div>
             </div>
             <div className="space-y-1">
