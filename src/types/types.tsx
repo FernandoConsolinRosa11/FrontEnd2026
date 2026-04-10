@@ -78,3 +78,10 @@ export interface FavoriteData {
   userId: string;
   carId: string;
 }
+
+export interface ProposalModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  carId: string;
+  userId: string;
+}
