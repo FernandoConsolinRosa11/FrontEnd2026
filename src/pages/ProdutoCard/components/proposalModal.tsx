@@ -25,18 +25,16 @@ export default function ProposalModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4" data-aos="zoom-in">
-      {/* Container Principal Estilo Dark Minimalist */}
-      <div className="bg-[#121212] border border-white/20 w-full max-w-4xl overflow-hidden shadow-2xl">
-        <div className="p-6 border-b border-white/10 text-center">
+    <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50 p-4" >
+      <div className="bg-[#121212] border border-white/20 w-full max-w-4xl overflow-hidden shadow-2xl" data-aos="zoom-in">
+        <div className="p-6! border-b border-white/10 text-center">
           <h2 className="text-white text-2xl font-light tracking-[0.3em] uppercase">
             Proposta
           </h2>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <div className="p-6 space-y-6">
-            {/* Campo Valor */}
+          <div className="p-6! space-y-6">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                 Valor da Oferta (R$)
@@ -44,6 +42,7 @@ export default function ProposalModal({
               <input
                 type="number"
                 step="0.01"
+                min="0"
                 required
                 value={offeredValue}
                 onChange={(e) => setOfferedValue(e.target.value)}

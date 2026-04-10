@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { CardCarProps } from "../../types/types";
 import { Button } from "../UserProfile/Components";
 import ProposalModal from "./components/proposalModal";
+import SpecDescription from "./components/specDescription";
 
 export default function ProdutoCard() {
   const { id } = useParams();
@@ -42,25 +43,35 @@ export default function ProdutoCard() {
 
     <div className="bg-[#121212]">
       <div>
+
         <main className="mx-auto max-w-7xl p-4 md:p-8">
+
           <div className="bg-white rounded-t-sm rounded-b-none shadow-sm border border-gray-200 overflow-hidden mb-6 p-3!">
+
             <div className="flex flex-col md:flex-row">
-              <div className="w-full md:w-20 flex md:flex-col gap-2 p-2 border-b md:border-b-0 md:border-r border-gray-100 gallery-scrollbar overflow-x-auto md:overflow-y-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="text-center z-15 absolute" title="Retornar">
+                <Button
+                  onClick={() => window.history.back()}
+                  className=" p-2 rounded-sm!  text-zinc-950 hover:text-white! text-2xl! "
+                >
+                  <i className="bi bi-arrow-left-circle " />
+                </Button>
+              </div>
+              <div className="w-full md:w-20 flex md:flex-col my-auto gap-2 p-2 border-b md:border-b-0 md:border-r border-gray-100 gallery-scrollbar overflow-x-auto md:overflow-y-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <button className="shrink-0 w-16 h-16 border-2 border-blue-60shrink-0.5 focus:outline-none">
                   img
                 </button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
-                </button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
                   img
                 </button>
                 <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
                   img
                 </button>
-                <button className="shrink-0 w-16 h-16 border-2 border-blue-60shrink-0.5 focus:outline-none">img</button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">img</button>
+                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-300 rounded p-0.5 focus:outline-none transition relative group">
+                  <div className="absolute inset-0.5 bg-black/60 rounded-sm flex items-center justify-center group-hover:bg-black/70 transition">
+                    <span className="text-white font-bold text-xl">+8</span>
+                  </div>
+                </button>
               </div>
 
               <div className="grow bg-white flex items-center justify-center p-4 md:p-8 border-b md:border-b-0 md:border-r border-gray-100">
@@ -113,7 +124,7 @@ export default function ProdutoCard() {
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-[11px] uppercase font-bold text-gray-400 tracking-widerk">Modelo</p>
+                    <p className="text-[11px] uppercase font-bold text-gray-400 tracking-widerk"> <i className="bi bi-car-front-fill"></i> Modelo</p>
                     <p className="font-bold text-gray-900">{carro.model}</p>
                   </div>
                 </div>
@@ -143,36 +154,12 @@ export default function ProdutoCard() {
               Recursos e Itens do Veículo
             </h3>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 text-gray-950">
-              <div className="space-y-1">
-                <p className="text-sm font-black">Motorização</p>
-                <p className="text-xs font-bold text-gray-600">
-                  {carro.specs?.engine}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Transmissão</p>
-                <p className="text-xs font-bold text-gray-600">
-                  {carro.specs?.transmission}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Potência</p>
-                <p className="text-xs font-bold text-gray-600">400 CV</p>
-              </div>
-
-              <div className="space-y-1">
-                <p className="text-sm font-black">Velocidade Máxima</p>
-                <p className="text-xs font-bold text-gray-600">
-                  {carro.specs?.max_speed}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-black">Cor</p>
-                <p className="text-xs font-bold text-gray-600">
-                  {carro.specs?.color}
-                </p>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10 text-gray-950">
+              <SpecDescription titulo="Motorização" valor={carro.specs?.engine} />
+              <SpecDescription titulo="Transmissão" valor={carro.specs?.transmission} />
+              <SpecDescription titulo="Potência" valor={carro.specs?.potency} />
+              <SpecDescription titulo="Velocidade Máxima" valor={carro.specs?.max_speed} />
+              <SpecDescription titulo="Cor" valor={carro.specs?.color} />
             </div>
             <div className="space-y-1">
               <p className="text-sm font-black">Itens</p>
@@ -181,7 +168,7 @@ export default function ProdutoCard() {
                   carro.features.map((item: any, index: number) => (
                     <p
                       key={index}
-                      className="text-xs font-bold text-slate-50 bg-[#C59958] p-2! "
+                      className="text-xs font-bold text-slate-50 bg-[#C59958] p-2! rounded-4xl "
                     >
                       {typeof item === "object" ? item.name : item}
                     </p>

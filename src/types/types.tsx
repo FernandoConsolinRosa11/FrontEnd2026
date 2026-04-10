@@ -34,6 +34,7 @@ export interface CardCarProps {
     max_speed?:number;
     zeroToHundred?:number; 
     color?: string;
+    potency?:string;
   }
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
 }
@@ -85,3 +86,9 @@ export interface ProposalModalProps {
   carId: string;
   userId: string;
 }
+
+export interface SpecDescriptionProps {
+  titulo: string;
+  valor: string | number | undefined;
+}
+
