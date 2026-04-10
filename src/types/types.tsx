@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react';
 
 export type InputProps = {
   texto?: string;
   onClick?: () => void;
   className?: string; 
   type?: 'button' | 'submit' | 'reset';
+  children?: ReactNode;
 };
 
 export interface Review {  //Reviews Carrossel Home
@@ -23,13 +25,15 @@ export interface CardCarProps {
   imgUrl: string;
   category?: string;   // Ex: "Esportivo"
   year?: string;
+  model?: string;
   specs?: {
     engine?: string;   // Ex: "4.0 V8"
     drive?: string;    // Ex: "4x4"
     transmission: string; // Ex: "Automático"
     fuel?:string; 
-    maxSpeed?:number;
+    max_speed?:number;
     zeroToHundred?:number; 
+    color?: string;
   }
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
 }
@@ -68,4 +72,16 @@ export interface InfoRowProps {
   label: string;
   value: string;
   onEdit?: () => void;
+}
+
+export interface FavoriteData {
+  userId: string;
+  carId: string;
+}
+
+export interface ProposalModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  carId: string;
+  userId: string;
 }

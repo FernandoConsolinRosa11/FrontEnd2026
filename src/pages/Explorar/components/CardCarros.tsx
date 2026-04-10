@@ -24,17 +24,17 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
 
   return (
     <div className="w-full max-w-[325px] bg-[#ffff] text-black shadow-md overflow-hidden mb-5 border border-zinc-800">
-      {/* Imagem usando a propriedade imgUrl do seu Type */}
+  
       <img
         src={carro.imgUrl}
         alt={`${carro.brand} ${carro.name}`}
-        className="w-full h-48 md:h-56 lg:h-64 object-cover object-center"
+        className="w-full h-48 md:h-56 lg:h-64 object-fill object-center"
       />
 
       <div className="p-4">
         {/* Título dinâmico: Marca + Nome */}
-        <h6 className="text-xl font-bold line-clamp-2 min-h-[56px]">
-          {carro.brand} <span className="font-medium text-gray-600">{carro.name}</span>
+        <h6 className="text-xl font-bold line-clamp-2 min-h-[36px]">
+        <span className="font-medium text-gray-600">{carro.name}</span>
         </h6>
 
         {/* Renderização condicional das specs (motor, tração, transmissão) */}
@@ -48,14 +48,14 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
               <i className="bi bi-calendar" /> {carro.year}
             </p>
           )}
-        </div>
 
-        {/* Localização (caso venha no objeto futuramente, ou fixo por enquanto) */}
-        <div className="mb-3">
           <p className="text-gray-700 text-sm flex items-center gap-1">
             <i className="bi bi-geo-alt"></i> São Paulo (SP)
           </p>
+
         </div>
+
+
 
         {/* Preço formatado */}
         <h6 className="text-xl font-bold mb-3">
