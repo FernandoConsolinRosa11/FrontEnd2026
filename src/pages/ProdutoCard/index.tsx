@@ -94,25 +94,25 @@ export default function ProdutoCard() {
                 <div className="grid grid-cols-2 gap-x-4 gap-y-6 text-sm mb-8">
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                      Cidade
+                     <i className="bi bi-geo-alt-fill"></i> Cidade
                     </p>
                     <p className="font-bold text-gray-900">Curitiba - PR</p>
                   </div>
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                      Ano
+                      <i className="bi bi-calendar2-week"></i>  Ano
                     </p>
                     <p className="font-bold text-gray-900">2023 / 2023</p>
                   </div>
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                      KM
+                     <i className="bi bi-speedometer"></i> KM
                     </p>
                     <p className="font-bold text-gray-900">12.500 km</p>
                   </div>
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                      Câmbio
+                      <i className="bi bi-h-circle"></i> Câmbio
                     </p>
                     <p className="font-bold text-gray-900">
                       {carro.specs?.transmission}
@@ -195,6 +195,22 @@ export default function ProdutoCard() {
                   <p className="text-xs text-gray-400">Dados não disponíveis</p>
                 )}
               </div>
+<<<<<<< Updated upstream
+=======
+               <div className="space-y-1 mt-4.5!">
+                <p className="text-sm font-black">Itens</p>
+                <div className="flex gap-5! whitespace-nowrap">
+                  {Array.isArray(carro.features) ? (
+                    carro.features.map((item : any, index: number) => (
+                      <p key={index} className="text-xs font-bold text-slate-50 bg-[#C59958] p-2! ">
+                        {typeof item === 'object' ? item.name : item}
+                      </p>
+                    ))
+                  ) : (
+                    <p className="text-xs text-gray-400">Dados não disponíveis</p>
+                  )}
+                </div>
+>>>>>>> Stashed changes
             </div>
           </div>
         </main>
