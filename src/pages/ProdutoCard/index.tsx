@@ -38,6 +38,7 @@ export default function ProdutoCard() {
       </div>
     );
   return (
+
     <div className="bg-[#121212]">
       <div>
         <main className="mx-auto max-w-7xl p-4 md:p-8">
@@ -195,22 +196,6 @@ export default function ProdutoCard() {
                   <p className="text-xs text-gray-400">Dados não disponíveis</p>
                 )}
               </div>
-<<<<<<< Updated upstream
-=======
-               <div className="space-y-1 mt-4.5!">
-                <p className="text-sm font-black">Itens</p>
-                <div className="flex gap-5! whitespace-nowrap">
-                  {Array.isArray(carro.features) ? (
-                    carro.features.map((item : any, index: number) => (
-                      <p key={index} className="text-xs font-bold text-slate-50 bg-[#C59958] p-2! ">
-                        {typeof item === 'object' ? item.name : item}
-                      </p>
-                    ))
-                  ) : (
-                    <p className="text-xs text-gray-400">Dados não disponíveis</p>
-                  )}
-                </div>
->>>>>>> Stashed changes
             </div>
           </div>
         </main>
