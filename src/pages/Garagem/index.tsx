@@ -16,21 +16,13 @@ export default function Garagem() {
   useEffect(() => {
     const activeUser = user || authStorage.getUser();
 
-    if (!activeUser?.id) {
-      navigate("/Login");
-      return;
-    }
-
-    if (!id || id !== activeUser.id) {
-      navigate(`/Garagem/${activeUser.id}`);
-      return;
-    }
+    if (!activeUser?.id) { navigate("/Login"); return; }
+    if (!id || id !== activeUser.id) { navigate(`/Garagem/${activeUser.id}`); return; }
 
     const fetchGarage = async () => {
       try {
         setLoadingGarage(true);
-        const data = await garageService.getUserProposals(id);
-        setGarageCars(data);
+        setGarageCars(await garageService.getUserProposals(id));
       } catch (error) {
         console.error("Erro ao buscar garagem:", error);
       } finally {
@@ -62,8 +54,26 @@ export default function Garagem() {
               <GarageCard
                 key={`garage-${car.id}`}
                 car={car}
-                isFavorite={false}
-                onFavorite={() => {}}
+                onUpdate={async (_, offeredValue, message) => {
+                  try {
+                    await garageService.updateCarProposal(car.id, { offeredValue, message });
+                    setGarageCars((prev) =>
+                      prev.map((item) => item.id === car.id ? { ...item, offeredValue, message } : item)
+                    );
+                  } catch (error) {
+                    console.error("Erro ao atualizar proposta:", error);
+                    alert("Não foi possível atualizar a proposta.");
+                  }
+                }}
+                onDelete={async () => {
+                  try {
+                    await garageService.deleteCarProposal(car.id);
+                    setGarageCars((prev) => prev.filter((item) => item.id !== car.id));
+                  } catch (error) {
+                    console.error("Erro ao excluir proposta:", error);
+                    alert("Não foi possível excluir a proposta.");
+                  }
+                }}
               />
             ))
           ) : (

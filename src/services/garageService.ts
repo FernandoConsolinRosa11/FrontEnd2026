@@ -1,18 +1,35 @@
 import api from "./api";
+import type { GarageProposalPayload } from "../types/types";
 
-const getUserProposals = async (userId: string) => {
-  const response = await api.get(`/Garage/${userId}`);
-  return response.data;
-};
-
-const sendCarProposal = async (payload: any) => {
-  const response = await api.post("/Garage", payload);
-  return response.data;
-};
+export interface UpdateProposalPayload {
+  offeredValue: number;
+  message: string;
+}
 
 const garageService = {
-  getUserProposals,
-  sendCarProposal,
+  getUserProposals: async (userId: string) => {
+    const response = await api.get(`/Garage/${userId}`);
+    return response.data;
+  },
+
+  sendCarProposal: async (payload: GarageProposalPayload) => {
+    const response = await api.post("/Garage/proposals", payload);
+    return response.data;
+  },
+
+  // ✅ Agora aceita objeto ao invés de parâmetros separados
+  updateCarProposal: async (
+    proposalId: string,
+    payload: UpdateProposalPayload,
+  ) => {
+    const response = await api.put(`/Garage/${proposalId}`, payload);
+    return response.data;
+  },
+
+  deleteCarProposal: async (proposalId: string) => {
+    const response = await api.delete(`/Garage/${proposalId}`);
+    return response.data;
+  },
 };
 
 export default garageService;

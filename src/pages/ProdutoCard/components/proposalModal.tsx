@@ -64,8 +64,8 @@ export default function ProposalModal({ carId, userId, onClose }: ProposalModalP
           </div>
 
           <div className="flex flex-col pt-4">
-            <Button texto={loading ? "Enviando..." : "Confirmar Proposta"} type="submit" />
-            <Button texto="Cancelar" type="button" onClick={onClose} className="text-gray-500" />
+            <Button texto={loading ? "Enviando..." : "Confirmar Proposta"} type="submit" className="text-gray-50" />
+            <Button texto="Cancelar" type="button" onClick={onClose} className="text-gray-50 hover:bg-red-500!" />
           </div>
         </form>
       </div>

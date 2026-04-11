@@ -1,9 +1,15 @@
 import type { InputProps } from "../types/types.tsx";
 
-export default function Button({ texto, onClick, className, children}: InputProps) {
+export default function Button({
+  texto,
+  onClick,
+  className,
+  children,
+  type = "button",
+}: InputProps) {
   return (
     <button
-      // type={type}
+      type={type}
       onClick={onClick}
       className={`
         cursor-pointer
