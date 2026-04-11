@@ -92,3 +92,12 @@ export interface SpecDescriptionProps {
   valor: string | number | undefined;
 }
 
+export interface CardGarageProps {
+  id: string;
+  name: string;
+  imgUrl: string;
+  offeredValue: number;
+  status: string;
+  message?: string;
+  brand?: string;
+}
