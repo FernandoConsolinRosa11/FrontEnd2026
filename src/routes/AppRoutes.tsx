@@ -3,6 +3,7 @@ import { Home, Login, Register, ErrorPage, Explorar, Garagem } from "../pages";
 import Menu from "../layout/Menu";
 import UserProfile from "../pages/UserProfile";
 import ProdutoCard from "../pages/ProdutoCard";
+import Favoritos from "../pages/Favoritos";
 
 export default function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ export default function AppRoutes() {
       <Route path="/Explorar/:id" element={<ProdutoCard />} />
       <Route path="/Garagem/:id" element={<Garagem />} />
       <Route path="/Perfil/:id" element={<UserProfile />} />
+      <Route path="/Favoritos/:id" element={<Favoritos/>} />
     </Routes>
   );
 }

@@ -9,6 +9,8 @@ import { AuthContext } from "../../contexts/authContext";
 export default function Garagem() {
   const [garageCars, setGarageCars] = useState<CardGarageProps[]>([]);
   const [loadingGarage, setLoadingGarage] = useState(true);
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [statusType, setStatusType] = useState<"success" | "error">("success");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -16,8 +18,14 @@ export default function Garagem() {
   useEffect(() => {
     const activeUser = user || authStorage.getUser();
 
-    if (!activeUser?.id) { navigate("/Login"); return; }
-    if (!id || id !== activeUser.id) { navigate(`/Garagem/${activeUser.id}`); return; }
+    if (!activeUser?.id) {
+      navigate("/Login");
+      return;
+    }
+    if (!id || id !== activeUser.id) {
+      navigate(`/Garagem/${activeUser.id}`);
+      return;
+    }
 
     const fetchGarage = async () => {
       try {
@@ -48,6 +56,18 @@ export default function Garagem() {
           Sua Garagem
         </h2>
 
+        {statusMessage && (
+          <div
+            className={`mb-6 rounded-sm border p-4 text-sm ${
+              statusType === "success"
+                ? "border-emerald-400 bg-emerald-500/10 text-emerald-200"
+                : "border-red-500 bg-red-500/10 text-red-200"
+            }`}
+          >
+            {statusMessage}
+          </div>
+        )}
+
         <div className="flex flex-wrap gap-8">
           {garageCars.length > 0 ? (
             garageCars.map((car) => (
@@ -56,22 +76,37 @@ export default function Garagem() {
                 car={car}
                 onUpdate={async (_, offeredValue, message) => {
                   try {
-                    await garageService.updateCarProposal(car.id, { offeredValue, message });
+                    await garageService.updateCarProposal(car.id, {
+                      offeredValue,
+                      message,
+                    });
                     setGarageCars((prev) =>
-                      prev.map((item) => item.id === car.id ? { ...item, offeredValue, message } : item)
+                      prev.map((item) =>
+                        item.id === car.id
+                          ? { ...item, offeredValue, message }
+                          : item,
+                      ),
                     );
+                    setStatusType("success");
+                    setStatusMessage("Proposta atualizada com sucesso.");
                   } catch (error) {
                     console.error("Erro ao atualizar proposta:", error);
-                    alert("Não foi possível atualizar a proposta.");
+                    setStatusType("error");
+                    setStatusMessage("Não foi possível atualizar a proposta.");
                   }
                 }}
                 onDelete={async () => {
                   try {
                     await garageService.deleteCarProposal(car.id);
-                    setGarageCars((prev) => prev.filter((item) => item.id !== car.id));
+                    setGarageCars((prev) =>
+                      prev.filter((item) => item.id !== car.id),
+                    );
+                    setStatusType("success");
+                    setStatusMessage("Proposta excluída com sucesso.");
                   } catch (error) {
                     console.error("Erro ao excluir proposta:", error);
-                    alert("Não foi possível excluir a proposta.");
+                    setStatusType("error");
+                    setStatusMessage("Não foi possível excluir a proposta.");
                   }
                 }}
               />

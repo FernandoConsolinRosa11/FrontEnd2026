@@ -40,11 +40,6 @@ export interface CardCarProps {
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
 }
 
-export interface CardGarageProps extends CardCarProps {
-  status: "Processando" | "Entregue" | "Cancelado";
-  purchaseDate: string;
-}
-
 export interface UserData {
   id: string;
   name: string;
@@ -91,7 +86,7 @@ export interface ProposalModalProps {
 export interface GarageProposalPayload {
   offeredValue: number;
   message: string;
-  carId: string; 
+  carId: string;
   userId: string;
 }
 
@@ -117,5 +112,6 @@ export interface CardGarageProps {
   status: string;
   message?: string;
   brand?: string;
+  favoriteId?: string;
   date_offer?: string;
 }
