@@ -106,7 +106,7 @@ export default function ProdutoCard() {
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
                       <i className="bi bi-geo-alt-fill"></i> Cidade
                     </p>
-                    <p className="font-bold text-gray-900">Curitiba - PR</p>
+                    <p className="font-bold text-gray-900"> São Paulo - SP</p>
                   </div>
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">

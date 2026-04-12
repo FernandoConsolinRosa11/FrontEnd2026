@@ -4,10 +4,16 @@ import { userService } from "../../../services/userService";
 import type { UserData } from "../../../types/types";
 
 export const useUserProfile = (id: string | undefined) => {
+  const [notification, setNotification] = useState<{
+    message: string;
+    variant: "success" | "error";
+  } | null>(null);
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeModal, setActiveModal] = useState<"password" | "phone" | null>(null);
+  const [activeModal, setActiveModal] = useState<"password" | "phone" | null>(
+    null,
+  );
 
   const fetchUserProfile = useCallback(async () => {
     if (!id || id === ":id" || id === "undefined") return;
@@ -21,28 +27,54 @@ export const useUserProfile = (id: string | undefined) => {
     }
   }, [id]);
 
-  useEffect(() => { fetchUserProfile(); }, [fetchUserProfile]);
+  useEffect(() => {
+    fetchUserProfile();
+  }, [fetchUserProfile]);
 
-  const handleUpdate = async (field: keyof UserData | "password", value: string) => {
+  const handleUpdate = async (
+    field: keyof UserData | "password",
+    value: string,
+  ) => {
     try {
-      const updatedUser = await userService.updateProfile(id!, { [field]: value });
+      const updatedUser = await userService.updateProfile(id!, {
+        [field]: value,
+      });
       setUserData(updatedUser);
       setActiveModal(null);
+      setNotification({
+        message: "Perfil atualizado com sucesso!",
+        variant: "success",
+      });
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Erro ao atualizar.");
+      setNotification({
+        message: err instanceof Error ? err.message : "Erro ao atualizar.",
+        variant: "error",
+      });
     }
   };
 
   const handleDelete = async () => {
-    if (!id || !window.confirm("Deseja desativar seu perfil?")) return;
+    if (!id) return;
     try {
       await userService.deleteProfile(id);
       localStorage.removeItem("token");
       navigate("/login");
     } catch (err) {
-      alert("Erro ao desativar perfil.");
+      setNotification({
+        message: "Erro ao desativar perfil.",
+        variant: "error",
+      });
     }
   };
 
-  return { userData, isLoading, activeModal, setActiveModal, handleUpdate, handleDelete };
+  return {
+    userData,
+    isLoading,
+    activeModal,
+    setActiveModal,
+    handleUpdate,
+    handleDelete,
+    notification,
+    setNotification,
+  };
 };

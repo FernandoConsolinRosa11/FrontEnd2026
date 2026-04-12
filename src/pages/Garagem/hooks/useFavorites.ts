@@ -25,9 +25,10 @@ export default function useFavorites(userId: string) {
   const handleToggleFavorite = async (carId: string) => {
     try {
       await favoriteService.toggle({ userId, carId });
-      await loadData(); 
+      await loadData();
     } catch (error) {
-      alert("Não foi possível atualizar o favorito.");
+      console.error("Erro ao atualizar favorito:", error);
+      throw error;
     }
   };
 
