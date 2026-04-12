@@ -1,12 +1,15 @@
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import type { CardCarProps } from "../../types/types";
 import { Button } from "../UserProfile/Components";
 import ProposalModal from "./components/proposalModal";
 import SpecDescription from "./components/specDescription";
+import { AuthContext } from "../../contexts/authContext";
 
 export default function ProdutoCard() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const [carro, setCarro] = useState<CardCarProps | null>(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,14 +43,10 @@ export default function ProdutoCard() {
       </div>
     );
   return (
-
     <div className="bg-[#121212]">
       <div>
-
         <main className="mx-auto max-w-7xl p-4 md:p-8">
-
           <div className="bg-white rounded-t-sm rounded-b-none shadow-sm border border-gray-200 overflow-hidden mb-6 p-3!">
-
             <div className="flex flex-col md:flex-row">
               <div className="text-center z-15 absolute" title="Retornar">
                 <Button
@@ -111,7 +110,7 @@ export default function ProdutoCard() {
                   </div>
                   <div>
                     <p className="text-[11px] uppercase font-bold text-gray-400 tracking-wider">
-                      <i className="bi bi-calendar2-week"></i>  Ano
+                      <i className="bi bi-calendar2-week"></i> Ano
                     </p>
                     <p className="font-bold text-gray-900">{carro.year}</p>
                   </div>
@@ -124,7 +123,10 @@ export default function ProdutoCard() {
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-[11px] uppercase font-bold text-gray-400 tracking-widerk"> <i className="bi bi-car-front-fill"></i> Modelo</p>
+                    <p className="text-[11px] uppercase font-bold text-gray-400 tracking-widerk">
+                      {" "}
+                      <i className="bi bi-car-front-fill"></i> Modelo
+                    </p>
                     <p className="font-bold text-gray-900">{carro.model}</p>
                   </div>
                 </div>
@@ -133,14 +135,20 @@ export default function ProdutoCard() {
                   <Button
                     texto="Iniciar Proposta"
                     className="w-full bg-[#C59958] hover:bg-[#997847]! text-white font-black py-4 rounded-lg transition  uppercase tracking-wider text-sm"
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => {
+                      if (!user?.id) {
+                        navigate("/Login");
+                        return;
+                      }
+                      setIsModalOpen(true);
+                    }}
                   />
 
                   {isModalOpen && (
                     <ProposalModal
                       carId={id as string}
                       isOpen={isModalOpen}
-                      userId={id as string}
+                      userId={user?.id ?? ""}
                       onClose={() => setIsModalOpen(false)}
                     />
                   )}
@@ -155,10 +163,19 @@ export default function ProdutoCard() {
             </h3>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10 text-gray-950">
-              <SpecDescription titulo="Motorização" valor={carro.specs?.engine} />
-              <SpecDescription titulo="Transmissão" valor={carro.specs?.transmission} />
+              <SpecDescription
+                titulo="Motorização"
+                valor={carro.specs?.engine}
+              />
+              <SpecDescription
+                titulo="Transmissão"
+                valor={carro.specs?.transmission}
+              />
               <SpecDescription titulo="Potência" valor={carro.specs?.potency} />
-              <SpecDescription titulo="Velocidade Máxima" valor={carro.specs?.max_speed} />
+              <SpecDescription
+                titulo="Velocidade Máxima"
+                valor={carro.specs?.max_speed}
+              />
               <SpecDescription titulo="Cor" valor={carro.specs?.color} />
             </div>
             <div className="space-y-1">
