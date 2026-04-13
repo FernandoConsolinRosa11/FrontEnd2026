@@ -1,22 +1,30 @@
-import { 
-  Button, 
-  InfoRow, 
-  LoginExpired, 
-  Loading, 
-  Modal, 
-  EditFieldForm, 
-  useUserProfile, 
-  useParams, 
-  isTokenExpired 
-} from './Components';
+import { useState } from "react";
+import {
+  Button,
+  InfoRow,
+  LoginExpired,
+  Loading,
+  Modal,
+  EditFieldForm,
+  useUserProfile,
+  useParams,
+  isTokenExpired,
+} from "./Components";
+import Notification from "../../components/Notification";
 
 const UserProfile = () => {
   const { id } = useParams<{ id: string }>();
-  const { 
-    userData, isLoading, activeModal, 
-    setActiveModal, handleUpdate, handleDelete 
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const {
+    userData,
+    isLoading,
+    activeModal,
+    setActiveModal,
+    handleUpdate,
+    handleDelete,
+    notification,
+    setNotification,
   } = useUserProfile(id);
-
 
   if (isLoading) {
     return <Loading />;
@@ -28,6 +36,11 @@ const UserProfile = () => {
 
   return (
     <div className="bg-[#121212] text-white font-sans  py-20! ">
+      <Notification
+        message={notification?.message ?? ""}
+        variant={notification?.variant ?? "success"}
+        onClose={() => setNotification(null)}
+      />
       <div className="max-w-5xl mx-auto px-4 ">
         <header className="mb-8 pb-2 ">
           <h1 className="text-2xl font-light tracking-widest uppercase border-l-4 pl-2! border-[#C59958]">
@@ -64,9 +77,36 @@ const UserProfile = () => {
         <Button
           texto="Deletar Perfil"
           className="hover:text-red-700 my-1"
-          onClick={handleDelete}
+          onClick={() => setShowDeleteConfirm(true)}
         />
       </div>
+
+      {showDeleteConfirm ? (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-[#121212] border border-white/20 p-6 max-w-md w-full">
+            <p className="text-white mb-6">Deseja desativar seu perfil?</p>
+            <div className="flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setShowDeleteConfirm(false)}
+                className="px-4 py-2 border border-white/20 text-white"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  await handleDelete();
+                  setShowDeleteConfirm(false);
+                }}
+                className="px-4 py-2 bg-red-600 text-white"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       <Modal isOpen={activeModal !== null} onClose={() => setActiveModal(null)}>
         <h3 className="text-xl tracking-[0.2em] uppercase mb-8 font-light text-white">

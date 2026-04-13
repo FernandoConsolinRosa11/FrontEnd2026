@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
+import Notification from "../../components/Notification";
 import { cpfMask, zipCodeMask, phoneMask } from "../Auth/masks/masks.ts";
 import { registerSchema } from "../Auth/masks/validationRegister.ts";
 import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
@@ -12,6 +14,10 @@ import axios from "axios";
 
 export default function Register() {
   const navigate = useNavigate();
+  const [notification, setNotification] = useState<{
+    message: string;
+    variant: "success" | "error";
+  } | null>(null);
 
   const {
     register,
@@ -24,7 +30,13 @@ export default function Register() {
   });
 
   const values = watch();
-  
+
+  useEffect(() => {
+    if (!notification) return;
+    const timer = setTimeout(() => setNotification(null), 3200);
+    return () => clearTimeout(timer);
+  }, [notification]);
+
   const onSubmit = async (data: RegisterFormData) => {
     try {
       const cleanData = {
@@ -41,13 +53,17 @@ export default function Register() {
 
       if (response.status === 201) {
         authStorage.saveUser(response.data.user);
+        setNotification({
+          message: "Cadastro realizado com sucesso.",
+          variant: "success",
+        });
         navigate("/Login");
         window.location.reload();
       }
     } catch (error: any) {
       const errormessage =
-        error.reponse?.data?.message || "Erro ao conectar com o servidor";
-      alert({ errormessage });
+        error.response?.data?.message || "Erro ao conectar com o servidor";
+      setNotification({ message: errormessage, variant: "error" });
       console.log(`Erro no cadastro:`, error.response?.data || error.message);
     }
   };
@@ -55,6 +71,13 @@ export default function Register() {
   return (
     <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
       <div className="absolute inset-0 register-bg py-10!" />
+      {notification ? (
+        <Notification
+          message={notification.message}
+          variant={notification.variant}
+          onClose={() => setNotification(null)}
+        />
+      ) : null}
 
       <form
         onSubmit={handleSubmit(onSubmit)}

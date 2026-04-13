@@ -1,6 +1,12 @@
 import type { InputProps } from "../types/types.tsx";
 
-export default function Button({ texto, onClick, className, type = "button" }: InputProps) {
+export default function Button({
+  texto,
+  onClick,
+  className,
+  children,
+  type = "button",
+}: InputProps) {
   return (
     <button
       type={type}
@@ -15,7 +21,7 @@ export default function Button({ texto, onClick, className, type = "button" }: I
         ${className || ""}
       `}
     >
-      {texto}
+      {children || texto}
     </button>
   );
 }

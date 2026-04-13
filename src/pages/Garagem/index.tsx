@@ -1,61 +1,121 @@
-import Mclaren from "../Home/Assets/imgMcLaren750s.jpg";
-import Button from "../../components/Button";
-// import type { CardCarProps } from "../../types/types";
-
+import { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import type { CardGarageProps } from "../../types/types";
+import GarageCard from "./components/garageCard";
+import { authStorage } from "../../utils/userLocalStorage";
+import garageService from "../../services/garageService";
+import { AuthContext } from "../../contexts/authContext";
 
 export default function Garagem() {
+  const [garageCars, setGarageCars] = useState<CardGarageProps[]>([]);
+  const [loadingGarage, setLoadingGarage] = useState(true);
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [statusType, setStatusType] = useState<"success" | "error">("success");
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    const activeUser = user || authStorage.getUser();
+
+    if (!activeUser?.id) {
+      navigate("/Login");
+      return;
+    }
+    if (!id || id !== activeUser.id) {
+      navigate(`/Garagem/${activeUser.id}`);
+      return;
+    }
+
+    const fetchGarage = async () => {
+      try {
+        setLoadingGarage(true);
+        setGarageCars(await garageService.getUserProposals(id));
+      } catch (error) {
+        console.error("Erro ao buscar garagem:", error);
+      } finally {
+        setLoadingGarage(false);
+      }
+    };
+
+    fetchGarage();
+  }, [user, id, navigate]);
+
+  if (loadingGarage) {
+    return (
+      <div className="min-h-screen bg-[#121212] flex items-center justify-center text-[#C59958] tracking-[0.2em] uppercase font-light">
+        Carregando sua coleção...
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#121212] text-white p-10 pt-2">
-      <h2 className="text-3xl font-light tracking-widest uppercase mb-10 border-l-4 border-[#C59958] pl-4 ml-10! px-3!">
-        Sua Garagem
-      </h2>
+      <div className="ml-10!">
+        <h2 className="text-3xl font-light tracking-[0.4em] uppercase mb-12! border-l-[5px] border-[#C59958] pl-6!">
+          Sua Garagem
+        </h2>
 
-      <div className="flex flex-wrap gap-6 m-10!">
-        <div className="bg-zinc-900/40 border border-zinc-800  w-80 flex flex-col justify-between hover:border-zinc-500 transition-all duration-500 group ">
-          <div>
-            <div className="mb-6 overflow-hidden">
-              <img
-                src={Mclaren}
-                alt="McLaren 750s"
-                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+        {statusMessage && (
+          <div
+            className={`mb-6 rounded-sm border p-4 text-sm ${
+              statusType === "success"
+                ? "border-emerald-400 bg-emerald-500/10 text-emerald-200"
+                : "border-red-500 bg-red-500/10 text-red-200"
+            }`}
+          >
+            {statusMessage}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-8">
+          {garageCars.length > 0 ? (
+            garageCars.map((car) => (
+              <GarageCard
+                key={`garage-${car.id}`}
+                car={car}
+                onUpdate={async (_, offeredValue, message) => {
+                  try {
+                    await garageService.updateCarProposal(car.id, {
+                      offeredValue,
+                      message,
+                    });
+                    setGarageCars((prev) =>
+                      prev.map((item) =>
+                        item.id === car.id
+                          ? { ...item, offeredValue, message }
+                          : item,
+                      ),
+                    );
+                    setStatusType("success");
+                    setStatusMessage("Proposta atualizada com sucesso.");
+                  } catch (error) {
+                    console.error("Erro ao atualizar proposta:", error);
+                    setStatusType("error");
+                    setStatusMessage("Não foi possível atualizar a proposta.");
+                  }
+                }}
+                onDelete={async () => {
+                  try {
+                    await garageService.deleteCarProposal(car.id);
+                    setGarageCars((prev) =>
+                      prev.filter((item) => item.id !== car.id),
+                    );
+                    setStatusType("success");
+                    setStatusMessage("Proposta excluída com sucesso.");
+                  } catch (error) {
+                    console.error("Erro ao excluir proposta:", error);
+                    setStatusType("error");
+                    setStatusMessage("Não foi possível excluir a proposta.");
+                  }
+                }}
               />
-            </div>
-
-            <div className="space-y-1 mb-8 ">
-              <span className="text-zinc-500 text-xs uppercase tracking-tighter m-2">
-                Veículo
-              </span>
-              <p className="text-xl font-medium tracking-wide text-zinc-100 italic m-2">
-                McLaren 750s
-              </p>
-            </div>
-          </div>
-
-          <div className="border-t border-zinc-800/50 pt-6 space-y-3">
-            <div className="flex justify-between text-xs uppercase tracking-widest text-zinc-400 my-2 m-2">
-              <span>Modelo</span>
-              <span className="text-zinc-100">Esportivo</span>
-            </div>
-            <div className="flex justify-between text-xs uppercase tracking-widest text-zinc-400 my-2 m-2">
-              <span>Status</span>
-              <span className="text-green-500/80">Entregue</span>
-            </div>
-            <div className="flex justify-between text-xs uppercase tracking-widest text-zinc-400 my-2 m-2">
-              <span>Adquirido</span>
-              <span className="text-zinc-100 text-[10px]">11/07/2001</span>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center mt-8">
-            <div className="flex items-center gap-2 bg-zinc-800/80 px-3 py-2  border-zinc-700/50">
-              <i className="bi bi-coin text-[#C59958]"></i>
-              <span className="text-sm font-mono text-zinc-200">
-                USD$ 386.700
-              </span>
-            </div>
-
-            <Button className="bi bi-x-circle text-zinc-500 hover:text-red-400 transition-colors text-xl" />
-          </div>
+            ))
+          ) : (
+            <p className="text-zinc-500 font-light italic pl-2">
+              Nenhum veículo em sua garagem no momento.
+            </p>
+          )}
         </div>
       </div>
     </div>
