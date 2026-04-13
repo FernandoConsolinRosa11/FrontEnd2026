@@ -2,7 +2,7 @@
 export type InputProps = {
   texto?: string;
   onClick?: () => void;
-  className?: string; 
+  className?: string;
   type?: 'button' | 'submit' | 'reset';
 };
 
@@ -12,30 +12,33 @@ export interface Review {  //Reviews Carrossel Home
   content: string;
   carPurchased: string;
   img: string;
-  stars:number;
+  stars: number;
 }
 
-export interface CardCarProps { 
+export interface CardCarProps {
   id: string;
   brand: string;      // Ex: "Porsche"
-  name: string;       
+  name: string;
   price: number;
   imgUrl: string;
-  category?: string;   // Ex: "Esportivo"
-  year?: string;
+  allImages: string[];
+  category?: {
+    id: string;
+    name: string;
+  }; year?: string;
   specs?: {
     engine?: string;   // Ex: "4.0 V8"
     drive?: string;    // Ex: "4x4"
     transmission: string; // Ex: "Automático"
-    fuel?:string; 
-    maxSpeed?:number;
-    zeroToHundred?:number; 
+    fuel?: string;
+    maxSpeed?: number;
+    zeroToHundred?: number;
   }
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
 }
 
-export interface CardGarageProps extends CardCarProps{ 
-  status : 'Processando' | 'Entregue' | 'Cancelado';
+export interface CardGarageProps extends CardCarProps {
+  status: 'Processando' | 'Entregue' | 'Cancelado';
   purchaseDate: string;
 }
 
@@ -44,16 +47,16 @@ export interface UserData {
   name: string;
   email: string;
   cpf: string;
-  cep:string;
-  password:string;
-  number:string;
+  cep: string;
+  password: string;
+  number: string;
 }
 
 export interface EditConfig {
   label: string;
   type?: string;
   defaultValue?: string;
-  maxLength?: number; 
+  maxLength?: number;
 }
 
 export interface UserData {

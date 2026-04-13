@@ -7,8 +7,6 @@ export default function CardCarro({ carro }: { carro: CardCarProps }) {
 
   const navigate = useNavigate();
 
-  console.log("Dados do carro recebidos no Card:", carro);
-
   const handleNavigation = () => {
     navigate(`/Explorar/${carro.id}`);
   };
