@@ -20,24 +20,29 @@ export interface Review {
 
 export interface CardCarProps {
   id: string;
-  brand: string; // Ex: "Porsche"
+  brand: string;      // Ex: "Porsche"
   name: string;
   price: number;
   imgUrl: string;
-  category?: string; // Ex: "Esportivo"
-  year?: string;
-  model?: string;
+  allImages: string[];
+  category?: {
+    id: string;
+    name: string;
+  }; year?: string;
   specs?: {
     engine?: string; // Ex: "4.0 V8"
     drive?: string; // Ex: "4x4"
     transmission: string; // Ex: "Automático"
     fuel?: string;
-    max_speed?: number;
+    maxSpeed?: number;
     zeroToHundred?: number;
-    color?: string;
-    potency?: string;
-  };
+  }
   features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
+}
+
+export interface CardGarageProps extends CardCarProps {
+  status: 'Processando' | 'Entregue' | 'Cancelado';
+  purchaseDate: string;
 }
 
 export interface UserData {

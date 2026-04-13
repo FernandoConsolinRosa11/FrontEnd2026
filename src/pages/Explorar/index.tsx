@@ -11,13 +11,16 @@ import type { CardCarProps } from "../../types/types";
 export default function Explorar() {
   const [cars, setCars] = useState<CardCarProps[]>([]);
   const [marcaSelecionada, setMarcaSelecionada] = useState("Todos");
-  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
-  const [notification, setNotification] = useState<{
-    message: string;
-    variant: "success" | "error";
-  } | null>(null);
-  const { user } = useContext(AuthContext);
+  const [categoriasSelecionadas, setCategoriasSelecionadas] = useState<string[]>([]);
 
+  const handleCategoryToggle = (category: string) => {
+    console.log("Categoria clicada:", category); 
+    setCategoriasSelecionadas((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category) 
+        : [...prev, category]                
+    );
+  };
   useEffect(() => {
     async function fetchCars() {
       try {
@@ -33,30 +36,20 @@ export default function Explorar() {
     fetchCars();
   }, []);
 
-  useEffect(() => {
-    const loadFavorites = async () => {
-      const activeUser = user || authStorage.getUser();
-      if (!activeUser?.id) {
-        setFavoriteIds([]);
-        return;
-      }
+  const carsFiltrados = cars.filter((carro) => {
+  // 1. Filtro de Marcas
+  const matchesMarca = marcaSelecionada === "Todos" || carro.brand === marcaSelecionada;
 
-      try {
-        const favorites = await favoriteService.getByUser(activeUser.id);
-        setFavoriteIds(favorites.map((favorite: any) => favorite.carId));
-      } catch (error) {
-        console.error("Erro ao carregar favoritos:", error);
-        setFavoriteIds([]);
-      }
-    };
+  // 2. Filtro de Categorias
+  // Convertemos as categorias selecionadas para minúsculo para comparar sem erro
+  const categoriasLower = categoriasSelecionadas.map(c => c.toLowerCase());
 
-    loadFavorites();
-  }, [user]);
+  const matchesCategoria =
+    categoriasSelecionadas.length === 0 ||
+    (carro.category?.name && categoriasLower.includes(carro.category.name.toLowerCase()));
 
-  const carsFiltrados =
-    marcaSelecionada === "Todos"
-      ? cars
-      : cars.filter((carro) => carro.brand === marcaSelecionada);
+  return matchesMarca && matchesCategoria;
+});
 
   const handleDismissNotification = () => {
     setNotification(null);
@@ -114,7 +107,10 @@ export default function Explorar() {
       </div>
 
       <div className="w-full flex">
-        <SideBar />
+        <SideBar
+          onCategoryChange={handleCategoryToggle}   
+          selectedCategories={categoriasSelecionadas} 
+        />
 
         <div className="w-full px-8">
           <div className="max-w-[1350px] mx-auto grid grid-cols-1 sm:grid-cols-3 justify-items-center gap-4">

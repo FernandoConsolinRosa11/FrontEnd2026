@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   const location = useLocation();
- 
+
   const currentPath = location.pathname.toLowerCase();
 
   const hideLayout = ["/login", "/register"];

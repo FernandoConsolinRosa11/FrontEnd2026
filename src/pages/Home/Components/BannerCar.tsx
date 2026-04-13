@@ -47,9 +47,6 @@ export default function CarrouselCar() {
                   <div
                     className={`flex gap-4 mt-10 transition-opacity  ${isActive ? "opacity-100" : "opacity-0"}`}
                   >
-                    <button className="bg-[#C59958] text-white px-4 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] transition-all  ">
-                      Explorar Modelo <span>→</span>
-                    </button>
                     <Button texto="Ver Mais  ↓" className="border border-[#121212] px-4 py-3 font-bold uppercase text-xs flex items-center gap-2 hover:bg-[#121212] hover:text-white transition-all " onClick={()=>{navigate('/Explorar')}}/>
             
                   </div>

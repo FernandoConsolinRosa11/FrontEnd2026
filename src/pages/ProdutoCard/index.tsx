@@ -14,14 +14,18 @@ export default function ProdutoCard() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [imgSelecionada, setImgSelecionada] = useState("");
   useEffect(() => {
     async function fetchCarro() {
       try {
         const res = await fetch(`http://localhost:3000/cars/${id}`);
         const data = await res.json();
         setCarro(data);
-      } catch (error) {
-        console.error("Erro ao buscar carro:", error);
+        if (data.allImages && data.allImages.length > 0) {
+          setImgSelecionada(data.allImages[0]);
+        }
+      } catch (err) {
+        console.error("Erro:", err);
       } finally {
         setLoading(false);
       }
@@ -48,34 +52,30 @@ export default function ProdutoCard() {
         <main className="mx-auto max-w-7xl p-4 md:p-8">
           <div className="bg-white rounded-t-sm rounded-b-none shadow-sm border border-gray-200 overflow-hidden mb-6 p-3!">
             <div className="flex flex-col md:flex-row">
-              <div className="text-center z-15 absolute" title="Retornar">
-                <Button
-                  onClick={() => window.history.back()}
-                  className=" p-2 rounded-sm!  text-zinc-950 hover:text-white! text-2xl! "
-                >
-                  <i className="bi bi-arrow-left-circle " />
-                </Button>
-              </div>
-              <div className="w-full md:w-20 flex md:flex-col my-auto gap-2 p-2 border-b md:border-b-0 md:border-r border-gray-100 gallery-scrollbar overflow-x-auto md:overflow-y-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <button className="shrink-0 w-16 h-16 border-2 border-blue-60shrink-0.5 focus:outline-none">
-                  img
-                </button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
-                  img
-                </button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-30 shrink-0.5 focus:outline-none transition">
-                  img
-                </button>
-                <button className="shrink-0 w-16 h-16 border border-gray-200 hover:border-blue-300 rounded p-0.5 focus:outline-none transition relative group">
-                  <div className="absolute inset-0.5 bg-black/60 rounded-sm flex items-center justify-center group-hover:bg-black/70 transition">
-                    <span className="text-white font-bold text-xl">+8</span>
-                  </div>
-                </button>
+              <div className="w-full md:w-20 flex md:flex-col gap-2 p-2 border-b md:border-b-0 md:border-r border-gray-100 gallery-scrollbar overflow-x-auto md:overflow-y-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+                {carro.allImages.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setImgSelecionada(img)}
+                    className={`shrink-0 w-16 h-16 border rounded p-0.5 focus:outline-none transition ${imgSelecionada === img
+                      ? "border-blue-500"
+                      : "border-gray-200 hover:border-blue-300"
+                      }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`thumb-${index}`}
+                      className="w-full h-full object-cover rounded"
+                    />
+                  </button>
+                ))}
+
               </div>
 
               <div className="grow bg-white flex items-center justify-center p-4 md:p-8 border-b md:border-b-0 md:border-r border-gray-100">
                 <img
-                  src={carro.imgUrl}
+                  src={imgSelecionada}
                   alt={carro.name}
                   className="max-h-[450px] object-contain "
                 />
