@@ -12,7 +12,7 @@ import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
 import { authStorage } from "../../utils/userLocalStorage.ts";
 import axios from "axios";
 
-export default function Register() {
+export default function Register  () {
   const navigate = useNavigate();
   const [notification, setNotification] = useState<{
     message: string;
@@ -94,7 +94,7 @@ export default function Register() {
             placeholder="Nome completo"
           />
           {errors.name && (
-            <span className="text-red-500 text-xs">{errors.name.message}</span>
+            <span className="text-red-500 text-base">{errors.name.message}</span>
           )}
         </div>
 
@@ -107,7 +107,7 @@ export default function Register() {
             placeholder="CPF"
           />
           {errors.cpf && (
-            <span className="text-red-500 text-xs">{errors.cpf.message}</span>
+            <span className="text-red-500 text-base">{errors.cpf.message}</span>
           )}
         </div>
 
@@ -119,7 +119,7 @@ export default function Register() {
             placeholder="Email"
           />
           {errors.email && (
-            <span className="text-red-500 text-xs">{errors.email.message}</span>
+            <span className="text-red-500 text-base">{errors.email.message}</span>
           )}
         </div>
 
@@ -131,8 +131,22 @@ export default function Register() {
             placeholder="password"
           />
           {errors.password && (
-            <span className="text-red-500 text-xs">
+            <span className="text-red-500 text-base">
               {errors.password.message}
+            </span>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <input
+            {...register("confirmPassword")}
+            type="password"
+            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
+            placeholder="Confirmar senha"
+          />
+          {errors.confirmPassword && (
+            <span className="text-red-500 text-base">
+              {errors.confirmPassword.message}
             </span>
           )}
         </div>
@@ -147,7 +161,7 @@ export default function Register() {
               placeholder="Telefone"
             />
             {errors.number && (
-              <span className="text-red-500 text-xs">
+              <span className="text-red-500 text-base">
                 {errors.number.message}
               </span>
             )}
@@ -162,7 +176,7 @@ export default function Register() {
               placeholder="CEP"
             />
             {errors.cep && (
-              <span className="text-red-500 text-xs">{errors.cep.message}</span>
+              <span className="text-red-500 text-base">{errors.cep.message}</span>
             )}
           </div>
         </div>
