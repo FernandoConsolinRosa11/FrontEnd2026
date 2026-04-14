@@ -1,6 +1,5 @@
 import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
-import Checkbox from "../../components/checkbox.tsx";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
@@ -15,11 +14,18 @@ export default function Login() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMsg(null);
+  e.preventDefault();
+  setErrorMsg(null);
 
-    try {
-      const { user, token } = await authService.login({ email, password });
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    setErrorMsg("Email inválido");
+    return;
+  }
+
+  try {
+    const { user, token } = await authService.login({ email, password });
 
       console.log("Login bem-sucedido. Usuário:", user);
 
@@ -69,11 +75,6 @@ export default function Login() {
           value={password}
           required
         />
-
-        <span className="flex items-center">
-          <Checkbox texto="Manter-me Conectado" />
-        </span>
-
         <div className="grid grid-cols-3 items-center w-full">
           <Button
             texto=" ← "
