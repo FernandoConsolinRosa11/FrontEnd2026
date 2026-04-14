@@ -17,7 +17,7 @@ export default function ProdutoCard() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imgSelecionada, setImgSelecionada] = useState("");
-  
+
   // Estados para evitar erros de referência
   const [notification, setNotification] = useState<{ message: string; variant: "success" | "error" } | null>(null);
 
@@ -72,11 +72,11 @@ export default function ProdutoCard() {
       <main className="mx-auto max-w-7xl p-4 md:p-8">
         {/* Card Superior Principal */}
         <div className="bg-white rounded-t-sm shadow-sm border border-gray-200 overflow-hidden p-4! md:p-6">
-          
+
           {/* Botão Voltar */}
           <div className="mb-4">
-            <Button 
-              className="hover:text-white text-2xl! transition-colors" 
+            <Button
+              className="hover:text-white text-2xl! transition-colors"
               onClick={() => navigate(-1)}
             >
               <i className="bi bi-arrow-left-square"></i>
@@ -85,16 +85,15 @@ export default function ProdutoCard() {
 
           {/* Layout de 3 Colunas: Miniaturas | Imagem | Info */}
           <div className="flex flex-col md:flex-row items-start gap-6">
-            
+
             {/* 1. Miniaturas (Lateral Esquerda) */}
             <div className="w-full md:w-20 flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto max-h-[450px] scrollbar-hide">
               {carro.allImages?.map((img, index) => (
                 <button
                   key={index}
                   onClick={() => setImgSelecionada(img)}
-                  className={`shrink-0 w-16 h-16 border rounded p-0.5 transition ${
-                    imgSelecionada === img ? "border-[#C59958] border-2" : "border-gray-200"
-                  }`}
+                  className={`shrink-0 w-16 h-16 border rounded p-0.5 transition ${imgSelecionada === img ? "border-[#C59958] border-2" : "border-gray-200"
+                    }`}
                 >
                   <img src={img} alt="" className="w-full h-full object-cover rounded" />
                 </button>
@@ -115,7 +114,7 @@ export default function ProdutoCard() {
               <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter leading-none mb-2">
                 <span className="text-[#C59958]">{carro.name}</span>
               </h1>
-              
+
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100">
                 {carro.specs?.engine} • {carro.specs?.fuel} • {carro.specs?.transmission}
               </p>
@@ -181,18 +180,18 @@ export default function ProdutoCard() {
             <SpecDescription titulo="Motorização" valor={carro.specs?.engine} />
             <SpecDescription titulo="Transmissão" valor={carro.specs?.transmission} />
             <SpecDescription titulo="Potência" valor={carro.specs?.potency} />
-            <SpecDescription titulo="Velocidade Máxima" valor={carro.specs?.max_speed} />
+            <SpecDescription titulo="Velocidade Máxima" valor={carro.specs?.maxSpeed} />
             <SpecDescription titulo="Cor" valor={carro.specs?.color} />
           </div>
 
           <div className="space-y-3">
             <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-8 border-b border-gray-100 ">Itens de Série</h3>
             <div className="flex flex-wrap gap-2">
-              {Array.isArray(carro.features) ? (
+              {carro?.features && Array.isArray(carro.features) && carro.features.length > 0 ? (
                 carro.features.map((item: any, index: number) => (
                   <span
                     key={index}
-                    className="text-[15px]  text-white bg-[#C59958] px-3 my-3 rounded-full uppercase tracking-tighter"
+                    className="text-[15px] text-white bg-[#C59958] px-3 my-3 rounded-full uppercase tracking-tighter"
                   >
                     {typeof item === "object" ? item.name : item}
                   </span>

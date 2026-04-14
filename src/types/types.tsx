@@ -20,24 +20,28 @@ export interface Review {
 
 export interface CardCarProps {
   id: string;
-  brand: string;      // Ex: "Porsche"
+  brand?: string; // Já está opcional, isso resolve o erro da imagem 1
   name: string;
+  model: string;
   price: number;
   imgUrl: string;
   allImages: string[];
   category?: {
     id: string;
     name: string;
-  }; year?: string;
+  }; 
+  year?: string;
   specs?: {
-    engine?: string; // Ex: "4.0 V8"
-    drive?: string; // Ex: "4x4"
-    transmission: string; // Ex: "Automático"
+    engine?: string;
+    drive?: string;
+    transmission: string;
     fuel?: string;
+    potency: string;
     maxSpeed?: number;
     zeroToHundred?: number;
-  }
-  features?: string[]; // Ex: "Teto Solar","Banco De Couro","Blindado"
+    color?: string; 
+  };
+  features?: string[]; // Já está opcional
 }
 
 export interface CardGarageProps extends CardCarProps {
@@ -114,7 +118,7 @@ export interface CardGarageProps {
   name: string;
   imgUrl: string;
   offeredValue: number;
-  status: string;
+  status: 'Processando' | 'Entregue' | 'Cancelado';
   message?: string;
   brand?: string;
   favoriteId?: string;
