@@ -180,7 +180,7 @@ export default function ProdutoCard() {
             <SpecDescription titulo="Motorização" valor={carro.specs?.engine} />
             <SpecDescription titulo="Transmissão" valor={carro.specs?.transmission} />
             <SpecDescription titulo="Potência" valor={carro.specs?.potency} />
-            <SpecDescription titulo="Velocidade Máxima" valor={carro.specs?.maxSpeed} />
+            <SpecDescription titulo="Velocidade Máxima" valor={carro.specs?.max_speed} />
             <SpecDescription titulo="Cor" valor={carro.specs?.color} />
           </div>
 

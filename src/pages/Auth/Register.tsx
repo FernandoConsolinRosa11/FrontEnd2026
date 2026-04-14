@@ -128,7 +128,7 @@ export default function Register  () {
             {...register("password")}
             type="password"
             className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
-            placeholder="password"
+            placeholder="Senha"
           />
           {errors.password && (
             <span className="text-red-500 text-base">

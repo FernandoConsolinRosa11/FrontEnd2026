@@ -17,7 +17,6 @@ const garageService = {
     return response.data;
   },
 
-  // ✅ Agora aceita objeto ao invés de parâmetros separados
   updateCarProposal: async (
     proposalId: string,
     payload: UpdateProposalPayload,

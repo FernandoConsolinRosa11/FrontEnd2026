@@ -37,7 +37,7 @@ export interface CardCarProps {
     transmission: string;
     fuel?: string;
     potency: string;
-    maxSpeed?: number;
+    max_speed?: number;
     zeroToHundred?: number;
     color?: string; 
   };
