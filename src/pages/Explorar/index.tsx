@@ -24,18 +24,18 @@ export default function Explorar() {
         : [...prev, category]
     );
   };
-  useEffect(() => {
-    async function fetchCars() {
-      try {
-        const res = await fetch("http://localhost:3000/cars");
-        const data = await res.json();
 
-        setCars(data);
-      } catch (err) {
-        console.error("Erro ao buscar carros:", err);
-      }
+  const fetchCars = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/cars");
+      const data = await res.json();
+      setCars(data);
+    } catch (err) {
+      console.error("Erro ao buscar carros:", err);
     }
+  };
 
+  useEffect(() => {
     fetchCars();
   }, []);
 
