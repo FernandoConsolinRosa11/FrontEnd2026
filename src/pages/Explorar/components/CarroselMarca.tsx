@@ -74,7 +74,7 @@ export default function Carrossel({ onChangeMarca }: Props) {
                   <img
                     src={carro.logo}
                     alt={carro.nome}
-                    className="w-[100px] h-[70px] object-contain"
+                    className="w-[100px] h-[90px] object-contain"
                   />
                 </div>
               );
