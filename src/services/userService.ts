@@ -3,9 +3,7 @@ import api from "./api";
 
 const API_URL = "http://localhost:3000";
 
-interface UserUpdateData {
-  [key: string]: unknown;
-}
+type UserUpdateData = Partial<Record<string, unknown>>;
 
 export const userService = {
   getProfile: async (id: string) => {
@@ -32,12 +30,24 @@ export const userService = {
     if (!id || id === "undefined") {
       throw new Error("ID do usuário inválido para atualização");
     }
+    if (!data || Object.keys(data).length === 0) {
+      throw new Error("Nenhum dado fornecido para atualização");
+    }
+
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([, value]) => value !== undefined),
+    );
+
     try {
-      const response = await axios.patch(`${API_URL}/users/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.patch(
+        `${API_URL}/users/${id}`,
+        filteredData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error: unknown) {
       let message = "Erro ao atualizar dados no servidor";

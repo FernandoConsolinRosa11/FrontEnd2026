@@ -35,19 +35,42 @@ export const useUserProfile = (id: string | undefined) => {
     field: keyof UserData | "password",
     value: string,
   ) => {
-    try {
-      const updatedUser = await userService.updateProfile(id!, {
-        [field]: value,
+    if (!userData) {
+      setNotification({
+        message: "Dados do usuário não carregados.",
+        variant: "error",
       });
-      setUserData(updatedUser);
+      return;
+    }
+
+    try {
+      const updatePayload: Record<string, unknown> = {
+        [field]: value,
+      };
+
+      if (field === "password") {
+        updatePayload.name = userData.name;
+        updatePayload.cpf = userData.cpf;
+        updatePayload.cep = userData.cep;
+        updatePayload.number = userData.number;
+      }
+
+      if (field === "number") {
+        updatePayload.name = userData.name;
+        updatePayload.cpf = userData.cpf;
+        updatePayload.cep = userData.cep;
+      }
+
+      const updatedUser = await userService.updateProfile(id!, updatePayload);
+      setUserData(updatedUser as UserData);
       setActiveModal(null);
       setNotification({
         message: "Perfil atualizado com sucesso!",
         variant: "success",
       });
-    } catch (err) {
+    } catch (error) {
       setNotification({
-        message: err instanceof Error ? err.message : "Erro ao atualizar.",
+        message: error instanceof Error ? error.message : "Erro ao atualizar.",
         variant: "error",
       });
     }
@@ -59,7 +82,7 @@ export const useUserProfile = (id: string | undefined) => {
       await userService.deleteProfile(id);
       localStorage.removeItem("token");
       navigate("/login");
-    } catch (err) {
+    } catch {
       setNotification({
         message: "Erro ao desativar perfil.",
         variant: "error",

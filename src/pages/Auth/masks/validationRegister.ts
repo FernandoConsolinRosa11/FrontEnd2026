@@ -1,14 +1,13 @@
 import { z } from "zod";
-import { isValidCPF
-  
- } from "../../../utils/isValidCpf";
+import { isValidCPF } from "../../../utils/isValidCPF";
 export const registerSchema = z
   .object({
     name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
     email: z.string().email("Email inválido"),
     cpf: z
       .string()
-      .min(14, "CPF incompleto")
+      .min(11, "CPF incompleto")
+      .max(14, "CPF inválido")
       .refine((cpf) => isValidCPF(cpf), {
         message: "CPF inválido",
       }),
