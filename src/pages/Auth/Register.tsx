@@ -12,7 +12,7 @@ import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
 import { authStorage } from "../../utils/userLocalStorage.ts";
 import axios from "axios";
 
-export default function Register  () {
+export default function Register() {
   const navigate = useNavigate();
   const [notification, setNotification] = useState<{
     message: string;
@@ -69,8 +69,8 @@ export default function Register  () {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
-      <div className="absolute inset-0 register-bg py-10!" />
+    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden register-bg ">
+      <div className="absolute inset-0 py-10! " />
       {notification ? (
         <Notification
           message={notification.message}
@@ -81,7 +81,7 @@ export default function Register  () {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex-col gap-4 flex w-full glass-form m-6! scale-80 backdrop-blur-xl! border border-white/10!"
+        className="flex-col gap-4 flex glass-form m-6! w-full scale-80 backdrop-blur-xl! border border-white/10! overflow-y-hidden! "
       >
         <h3 className="m-auto text-white">
           Associe-se à <span className="text-[#C59958]">Prime Motors</span>
@@ -135,6 +135,7 @@ export default function Register  () {
               {errors.password.message}
             </span>
           )}
+          <span className="text-white">* Mínimo de 6 caracteres</span>
         </div>
 
         <div className="flex flex-col gap-1">
