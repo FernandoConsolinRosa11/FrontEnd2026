@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "../Auth/css/auth.css";
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
 import Notification from "../../components/Notification";
@@ -10,6 +9,7 @@ import { cpfMask, zipCodeMask, phoneMask } from "../Auth/masks/masks.ts";
 import { registerSchema } from "../Auth/masks/validationRegister.ts";
 import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
 import { authStorage } from "../../utils/userLocalStorage.ts";
+import "../Auth/css/auth.css";
 import axios from "axios";
 
 export default function Register() {

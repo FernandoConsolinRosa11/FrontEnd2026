@@ -47,10 +47,10 @@ export default function ReviewsSection() {
                         {t.name}
                       </h4>
                       <div className="flex justify-between items-center mt-1">
-                        <span className="text-[10px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
+                        <span className="text-[15px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
                           {t.carPurchased}
                         </span>
-                        <span className="text-[10px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
+                        <span className="text-[15px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
                           <i className="bi bi-star-fill mr-2! text-[#C59958]"></i>
                           {t.stars} / 10
                         </span>
