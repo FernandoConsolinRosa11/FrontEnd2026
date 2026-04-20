@@ -29,6 +29,7 @@ A aplicação é responsável pela interação com o usuário, consumo de API e 
 💻 Front-end: (https://github.com/FernandoConsolinRosa11/FrontEnd2026) 
 
 ⚙️ Back-end: (https://github.com/AitomD/PrimeMotors-backend)
+
 ## 👨‍💻 Desenvolvedores
 
 - [Aitom Donatoni](https://github.com/AitomD)  
