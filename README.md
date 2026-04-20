@@ -25,14 +25,10 @@ A aplicação é responsável pela interação com o usuário, consumo de API e 
 * Exclusão de dados
 * Consumo de API REST para comunicação com o back-end
 
-🔗 Projeto completo
-💻 Front-end
+## 🔗 Projeto completo 
+💻 Front-end: (https://github.com/FernandoConsolinRosa11/FrontEnd2026) 
 
-👉 Acessar repositório
-
-⚙️ Back-end
-
-👉 Acessar repositório
+⚙️ Back-end: (https://github.com/AitomD/PrimeMotors-backend)
 ## 👨‍💻 Desenvolvedores
 
 - [Aitom Donatoni](https://github.com/AitomD)  
