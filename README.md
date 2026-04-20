@@ -25,9 +25,10 @@ A aplicação é responsável pela interação com o usuário, consumo de API e 
 * Exclusão de dados
 * Consumo de API REST para comunicação com o back-end
 
-## 🔗 Integração
+## 🔗 Projeto completo
 
-Este front-end se comunica com um back-end desenvolvido em Node.js, responsável pela lógica da aplicação e gerenciamento do banco de dados.
+💻 Front-end: (https://github.com/FernandoConsolinRosa11/FrontEnd2026) 
+⚙️ Back-end: (https://github.com/AitomD/PrimeMotors-backend)
 
 ## 👨‍💻 Desenvolvedores
 
