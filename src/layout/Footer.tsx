@@ -23,7 +23,7 @@ export default function Footer() {
               <span className="mx-1">
                 <Link
                   to="https://www.instagram.com/aitomdonatoni/"
-                  target="_blank"
+                  target="_blank" className="text-white"
                 >
                   Aitom Henrique Donatoni
                 </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
               <span className="mx-1 ">
                 <Link
                   to="https://www.instagram.com/ferconsolin_rosa/"
-                  target="_blank"
+                  target="_blank" className="text-white"
                 >
                   Fernando Consolin Rosa
                 </Link>
@@ -46,7 +46,7 @@ export default function Footer() {
             <p className="text-sm font-light tracking-widest uppercase">
               <i className="bi bi-github"></i>
               <span className="mx-1">
-                <Link to="https://github.com/AitomD" target="_blank">
+                <Link to="https://github.com/AitomD" target="_blank" className="text-white">
                   Aitom Henrique Donatoni
                 </Link>
               </span>
@@ -56,7 +56,7 @@ export default function Footer() {
               <span className="mx-1 ">
                 <Link
                   to="https://github.com/FernandoConsolinRosa11"
-                  target="_blank"
+                  target="_blank" className="text-white"
                 >
                   Fernando Consolin Rosa
                 </Link>
@@ -70,7 +70,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="justify-self-center ">
-          <img src={Logo} alt="logo" className="size-22 w-full mt-5" />
+          <img src={Logo} alt="logo" className="size-22 w-full mt-2!" />
         </div>
       </div>
     </footer>
