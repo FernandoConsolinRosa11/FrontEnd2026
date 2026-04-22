@@ -96,7 +96,7 @@ export default function Explorar() {
   };
 
   return (
-    <div>
+    <div className="p-3!">
       {notification ? (
         <Notification
           message={notification.message}

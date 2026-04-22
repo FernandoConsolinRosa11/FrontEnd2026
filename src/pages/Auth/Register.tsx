@@ -91,7 +91,7 @@ export default function Register() {
         <div className="flex flex-col gap-1">
           <input
             {...register("name")}
-            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black "
             placeholder="Nome completo"
           />
           {errors.name && (
@@ -104,7 +104,7 @@ export default function Register() {
             {...register("cpf")}
             value={values.cpf || ""}
             onChange={(e) => setValue("cpf", cpfMask(e.target.value))}
-            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black "
             placeholder="CPF"
           />
           {errors.cpf && (
@@ -116,7 +116,7 @@ export default function Register() {
           <input
             {...register("email")}
             type="email"
-            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black "
             placeholder="Email"
           />
           {errors.email && (
@@ -128,7 +128,7 @@ export default function Register() {
           <input
             {...register("password")}
             type="password"
-            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black "
             placeholder="Senha"
           />
           {errors.password && (
@@ -143,7 +143,7 @@ export default function Register() {
           <input
             {...register("confirmPassword")}
             type="password"
-            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black "
             placeholder="Confirmar senha"
           />
           {errors.confirmPassword && (
@@ -159,7 +159,7 @@ export default function Register() {
               {...register("number")}
               value={values.number || ""}
               onChange={(e) => setValue("number", phoneMask(e.target.value))}
-              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black focus:outline-blue-500"
+              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black  focus:outline-blue-500"
               placeholder="Telefone"
             />
             {errors.number && (
@@ -174,7 +174,7 @@ export default function Register() {
               {...register("cep")}
               value={values.cep || ""}
               onChange={(e) => setValue("cep", zipCodeMask(e.target.value))}
-              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black focus:outline-blue-500"
+              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black  focus:outline-blue-500"
               placeholder="CEP"
             />
             {errors.cep && (

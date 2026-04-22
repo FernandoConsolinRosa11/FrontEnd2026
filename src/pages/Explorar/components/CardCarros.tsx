@@ -30,7 +30,7 @@ export default function CardCarro({
   };
 
   return (
-    <div className="w-full max-w-[325px] bg-[#ffff] text-black shadow-md overflow-hidden mb-5 border border-zinc-800">
+    <div className="w-full max-w-[345px] bg-[#ffff] text-black shadow-md overflow-hidden mb-3 border border-zinc-800">
       <img
         src={carro.imgUrl}
         alt={`${carro.brand} ${carro.name}`}
