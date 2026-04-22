@@ -43,7 +43,7 @@ export default function ProposalModal({
       console.error("Erro ao enviar:", error);
       setNotification({
         message:
-          "Erro ao enviar proposta. Verifique se o servidor está online.",
+          "Erro ao enviar proposta.",
         variant: "error",
       });
     } finally {
@@ -58,7 +58,7 @@ export default function ProposalModal({
         variant={notification?.variant ?? "success"}
         onClose={() => setNotification(null)}
       />
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black/20  flex items-center justify-center z-50 p-4">
         <div className="bg-[#121212] border border-white/20 w-full max-w-4xl shadow-2xl">
           <div className="p-6 border-b border-white/10 text-center">
             <h2 className="text-white text-2xl font-light tracking-[0.3em] uppercase">

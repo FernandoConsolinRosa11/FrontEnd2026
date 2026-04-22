@@ -69,8 +69,8 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden register-bg ">
-      <div className="absolute inset-0 py-10! " />
+    <div className="max-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
+      <div className="absolute inset-0 register-bg py-10!" />
       {notification ? (
         <Notification
           message={notification.message}
@@ -135,7 +135,7 @@ export default function Register() {
               {errors.password.message}
             </span>
           )}
-          <span className="text-white">* Mínimo de 6 caracteres</span>
+          {!errors.password && <span className="text-white">* Mínimo de 6 caracteres</span>}
         </div>
 
         <div className="flex flex-col gap-1">

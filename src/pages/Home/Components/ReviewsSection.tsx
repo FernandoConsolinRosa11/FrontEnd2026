@@ -37,7 +37,7 @@ export default function ReviewsSection() {
                       <span className="block mb-6">
                         <img src={t.img} alt="logo" />
                       </span>
-                      <p className="text-lg leading-relaxed text-zinc-300 italic mb-8 p-2">
+                      <p className="text-sm leading-relaxed text-zinc-300 italic mb-8 p-2">
                         {t.content}
                       </p>
                     </div>
@@ -47,7 +47,7 @@ export default function ReviewsSection() {
                         {t.name}
                       </h4>
                       <div className="flex justify-between items-center mt-1">
-                        <span className="text-[15px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
+                        <span className="text-[15px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase tracking-wider">
                           {t.carPurchased}
                         </span>
                         <span className="text-[15px] bg-zinc-800 px-2 py-1 text-zinc-400 font-mono uppercase">
