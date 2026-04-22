@@ -66,7 +66,7 @@ export default function ProposalModal({
             </h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="flex flex-col p-6! space-y-6">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                 Valor (R$)
@@ -102,7 +102,7 @@ export default function ProposalModal({
                 texto="Cancelar"
                 type="button"
                 onClick={onClose}
-                className="text-gray-50 hover:bg-red-500!"
+                className="text-gray-50 hover:text-red-500!"
               />
             </div>
           </form>

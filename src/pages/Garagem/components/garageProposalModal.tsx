@@ -99,7 +99,7 @@ export default function GarageProposalModal({
             </h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="flex flex-col p-6! space-y-6">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">
                 Valor (R$)
@@ -143,7 +143,7 @@ export default function GarageProposalModal({
                 type="button"
                 disabled={loading}
                 onClick={handleDelete}
-                className="w-full py-3 mt-2 border border-red-600/50 text-red-500 hover:bg-red-600 hover:text-white transition-all uppercase text-xs tracking-widest font-bold"
+                className="w-full text-gray-400 hover:text-red-600! transition-all uppercase text-xs tracking-widest "
               >
                 Excluir Proposta
               </button>

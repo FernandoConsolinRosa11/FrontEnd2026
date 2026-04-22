@@ -14,7 +14,7 @@ export default function SideBar({ onCategoryChange, selectedCategories }: SideBa
   ];
 
   return (
-    <div className="w-[25%] border-r h-full">
+    <div className="w-[25%] border-r h-full sticky top-15">
       <div className="max-w-sm p-6 rounded-xl shadow-sm space-y-8 m-2">
         <h3 className="text-lg font-bold text-gray-800 border-b pb-2">
           Filtros do Veículo
@@ -31,7 +31,6 @@ export default function SideBar({ onCategoryChange, selectedCategories }: SideBa
                 {cat.label}
               </p>
 
-              {/* Verifica se a categoria está no array de selecionadas para ativar o checkbox */}
               <CheckboxActive isActive={selectedCategories.includes(cat.value)} />
             </div>
           ))}

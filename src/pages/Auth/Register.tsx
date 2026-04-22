@@ -83,6 +83,7 @@ export default function Register() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex-col gap-4 flex glass-form m-6! w-full scale-80 backdrop-blur-xl! border border-white/10! overflow-y-hidden! "
       >
+
         <h3 className="m-auto text-white">
           Associe-se à <span className="text-[#C59958]">Prime Motors</span>
         </h3>
@@ -188,13 +189,13 @@ export default function Register() {
           <Button
             texto=" ← "
             type="button"
-            className="text-white justify-self-start gap-2 text-[20px]"
+            className="text-white justify-self-start gap-2 text-[20px]!"
             onClick={() => navigate("/")}
           />
           <Button
             texto="Confirmar"
             type="submit"
-            className="text-white justify-self-center items-center gap-2 text-[20px] m-auto"
+            className="text-white justify-self-center items-center gap-2 text-[20px]! m-auto"
           />
         </div>
       </form>
