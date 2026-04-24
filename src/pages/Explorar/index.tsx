@@ -1,12 +1,13 @@
 import { useEffect, useState, useContext } from "react";
-import Carrossel from "./components/CarroselMarca";
-import CardCarro from "./components/CardCarros";
-import SideBar from "./components/SideBar";
+
 import Notification from "../../components/Notification";
 import { AuthContext } from "../../contexts/authContext";
-import { authStorage } from "../../utils/userLocalStorage";
 import { favoriteService } from "../../services/favoriteService";
 import type { CardCarProps } from "../../types/types";
+import { authStorage } from "../../utils/userLocalStorage";
+import CardCarro from "./components/CardCarros";
+import Carrossel from "./components/CarroselMarca";
+import SideBar from "./components/SideBar";
 
 export default function Explorar() {
   const [cars, setCars] = useState<CardCarProps[]>([]);

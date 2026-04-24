@@ -2,6 +2,7 @@ import { FaChevronRight } from "react-icons/fa";
 import "./menu.css";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+
 import { AuthContext } from "../contexts/authContext";
 
 export default function Menu() {

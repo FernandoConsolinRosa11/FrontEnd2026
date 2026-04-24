@@ -1,14 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import { AuthContext } from "../contexts/authContext"; 
+import { Link, useNavigate } from "react-router-dom";
+
 import Logo from "../assets/icons/logo.png";
-import Menu from "./Menu";
 import Button from "../components/Button";
+import { AuthContext } from "../contexts/authContext";
+import Menu from "./Menu";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { user, logout } = useContext(AuthContext); 
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -19,7 +20,7 @@ export default function Navbar() {
   return (
     <nav className="font-medium bg-[#121212] shadow-2xl py-3  top-0 z-50 border-t border-b border-zinc-800">
       <div className="container-fluid flex items-center justify-between">
-        
+
         <div className="flex-1 flex justify-start mx-2 relative">
           <Button
             texto="Menu"
@@ -38,7 +39,7 @@ export default function Navbar() {
           {user ? (
             <div className="flex items-center gap-4">
               <span className="text-white normal-case font-bold">
-                <Link to={`/Perfil/${user.id}`}>Olá, {user.name}</Link>
+                <Link to={`/Perfil/${user.id}`} className="text-gray-300! transition-all ease-in-out hover:text-white! text-decoration-none ">Olá, {user.name}</Link>
               </span>
               <button
                 onClick={handleLogout}

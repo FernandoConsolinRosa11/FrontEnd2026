@@ -1,8 +1,9 @@
 import { useState } from "react";
+
+import Notification from "../../../components/Notification";
 import garageService from "../../../services/garageService";
 import type { ProposalModalProps } from "../../../types/types";
 import { Button } from "../../UserProfile/Components";
-import Notification from "../../../components/Notification";
 
 export default function ProposalModal({
   carId,

@@ -1,7 +1,8 @@
 import "../Auth/css/auth.css";
-import Button from "../../components/Button.tsx";
-import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Button from "../../components/Button.tsx";
 import { AuthContext } from "../../contexts/authContext";
 import { authService } from "../../services/authService";
 

@@ -1,8 +1,8 @@
-import Porsche911GT3R from "../pages/Home/Assets/Porsche911GT3R.png";
+import BuggatiReSide from "../pages/Home/Assets/BuggatiReside.png";
 import LamborghiniUrusSE from "../pages/Home/Assets/LamborghiniUrusSE.png"
 import McLaren720s from "../pages/Home/Assets/McLaren720s.png";
-import BuggatiReSide from "../pages/Home/Assets/BuggatiReside.png";
 import MercedesBenz300SL from "../pages/Home/Assets/MercedesBenz300SL1954.png";
+import Porsche911GT3R from "../pages/Home/Assets/Porsche911GT3R.png";
 
 export const cars = [
   { name: "Porsche 911 GT3R", img: Porsche911GT3R, slogan: "NASCIDO PARA VENCER." },

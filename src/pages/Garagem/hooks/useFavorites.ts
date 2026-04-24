@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+
 import { favoriteService } from "../../../services/favoriteService";
 import type { CardGarageProps } from "../../../types/types";
 

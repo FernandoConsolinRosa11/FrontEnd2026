@@ -1,11 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { AuthContext } from "../../contexts/authContext";
-import { authStorage } from "../../utils/userLocalStorage";
 import { favoriteService } from "../../services/favoriteService";
+import type { CardGarageProps } from "../../types/types";
+import { authStorage } from "../../utils/userLocalStorage";
 import useFavorites from "../Garagem/hooks/useFavorites";
 import FavoriteCard from "./components/FavoriteCard";
-import type { CardGarageProps } from "../../types/types";
 
 export default function Favoritos() {
   const { user } = useContext(AuthContext);

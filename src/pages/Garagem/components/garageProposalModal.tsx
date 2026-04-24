@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
+
 import Button from "../../../components/Button";
 import Notification from "../../../components/Notification";
 import type { GarageProposalModalProps } from "../../../types/types";

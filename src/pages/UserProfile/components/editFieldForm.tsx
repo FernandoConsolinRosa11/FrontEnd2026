@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import type { EditConfig } from "../../../types/types";
 
 export const EditFieldForm = ({ config, onSave }: { config: EditConfig; onSave: (v: string) => void }) => {

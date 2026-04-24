@@ -1,10 +1,10 @@
-import type { Review } from "../types/types.tsx"
 
+import imgBuggatiChiron from "../pages/Home/Assets/imgBuggatiChiron.jpg";
 import imgMcLaren750s from "../pages/Home/Assets/imgMcLaren750s.jpg";
+import imgMustang from "../pages/Home/Assets/imgMustang.jpg";
 import imgPorsche911 from "../pages/Home/Assets/imgPorsche911.jpg";
 import imgUrusSE from "../pages/Home/Assets/imgUrusSE.jpg";
-import imgBuggatiChiron from "../pages/Home/Assets/imgBuggatiChiron.jpg";
-import imgMustang from "../pages/Home/Assets/imgMustang.jpg";
+import type { Review } from "../types/types.tsx"
 
 
 export const UserReviews: Review[] = [

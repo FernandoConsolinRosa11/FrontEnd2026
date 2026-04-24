@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Register, ErrorPage, Explorar, Garagem } from "../pages";
+
 import Menu from "../layout/Menu";
-import UserProfile from "../pages/UserProfile";
-import ProdutoCard from "../pages/ProdutoCard";
+import { Home, Login, Register, ErrorPage, Explorar, Garagem } from "../pages";
 import Favoritos from "../pages/Favoritos";
+import ProdutoCard from "../pages/ProdutoCard";
+import UserProfile from "../pages/UserProfile";
 
 export default function AppRoutes() {
   return (

@@ -1,11 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+import Notification from "../../components/Notification"; // Certifique-se que o caminho está correto
+import { AuthContext } from "../../contexts/authContext";
 import type { CardCarProps } from "../../types/types";
 import { Button } from "../UserProfile/Components";
 import ProposalModal from "./components/proposalModal";
 import SpecDescription from "./components/specDescription";
-import Notification from "../../components/Notification"; // Certifique-se que o caminho está correto
-import { AuthContext } from "../../contexts/authContext";
 
 export default function ProdutoCard() {
   const { id } = useParams();

@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import Notification from "../../components/Notification";
 import {
   Button,
   InfoRow,
@@ -10,7 +12,6 @@ import {
   useParams,
   isTokenExpired,
 } from "./Components";
-import Notification from "../../components/Notification";
 
 const UserProfile = () => {
   const { id } = useParams<{ id: string }>();
