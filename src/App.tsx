@@ -1,7 +1,8 @@
-import AppRoutes from "./routes/AppRoutes";
-import { Navbar, Footer } from "./layout";
 import { useLocation } from "react-router-dom";
+
 import { AuthProvider } from "./contexts/authContext";
+import { Navbar, Footer } from "./layout";
+import AppRoutes from "./routes/AppRoutes";
 import "./App.css";
 
 

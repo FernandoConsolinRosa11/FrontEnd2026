@@ -1,5 +1,5 @@
-import api from "./api";
 import type { FavoriteData } from "../types/types";
+import api from "./api";
 
 export interface FavoriteCreatePayload {
   carId: string;

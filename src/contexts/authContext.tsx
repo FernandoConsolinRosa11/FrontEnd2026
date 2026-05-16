@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
-import { authStorage } from "../utils/userLocalStorage";
+
 import type { AuthContextType, AuthLoginPayload, User } from "../types/auth";
+import { authStorage } from "../utils/userLocalStorage";
 
 export const AuthContext = createContext<AuthContextType>(
   {} as AuthContextType,

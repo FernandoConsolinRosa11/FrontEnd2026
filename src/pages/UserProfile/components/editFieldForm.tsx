@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import type { EditConfig } from "../../../types/types";
 
 export const EditFieldForm = ({ config, onSave }: { config: EditConfig; onSave: (v: string) => void }) => {
@@ -15,7 +16,7 @@ export const EditFieldForm = ({ config, onSave }: { config: EditConfig; onSave: 
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-2!">
       <input
         type={config.type || "text"}
         value={value}

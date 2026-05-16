@@ -1,8 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import {cars} from "../../../data/bannerCar";
-import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import Button from "../../../components/Button";
+import {cars} from "../../../data/bannerCar";
+
 
 export default function CarrouselCar() {
   const navigate = useNavigate();

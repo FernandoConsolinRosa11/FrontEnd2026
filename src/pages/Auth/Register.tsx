@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "../Auth/css/auth.css";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 import Button from "../../components/Button.tsx";
 import Checkbox from "../../components/checkbox.tsx";
 import Notification from "../../components/Notification";
+import { authStorage } from "../../utils/userLocalStorage.ts";
 import { cpfMask, zipCodeMask, phoneMask } from "../Auth/masks/masks.ts";
 import { registerSchema } from "../Auth/masks/validationRegister.ts";
 import type { RegisterFormData } from "../Auth/masks/validationRegister.ts";
-import { authStorage } from "../../utils/userLocalStorage.ts";
+
+import "../Auth/css/auth.css";
 import axios from "axios";
 
-export default function Register  () {
+export default function Register() {
   const navigate = useNavigate();
   const [notification, setNotification] = useState<{
     message: string;
@@ -69,7 +71,7 @@ export default function Register  () {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
+    <div className="max-h-screen w-full bg-[#121212] flex justify-end items-center overflow-hidden">
       <div className="absolute inset-0 register-bg py-10!" />
       {notification ? (
         <Notification
@@ -81,8 +83,9 @@ export default function Register  () {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex-col gap-4 flex w-full glass-form m-6! scale-80 backdrop-blur-xl! border border-white/10!"
+        className="flex-col gap-4 flex glass-form m-6! w-full scale-80 backdrop-blur-xl! border border-white/10! overflow-y-hidden! "
       >
+
         <h3 className="m-auto text-white">
           Associe-se à <span className="text-[#C59958]">Prime Motors</span>
         </h3>
@@ -90,7 +93,7 @@ export default function Register  () {
         <div className="flex flex-col gap-1">
           <input
             {...register("name")}
-            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black "
             placeholder="Nome completo"
           />
           {errors.name && (
@@ -103,7 +106,7 @@ export default function Register  () {
             {...register("cpf")}
             value={values.cpf || ""}
             onChange={(e) => setValue("cpf", cpfMask(e.target.value))}
-            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black "
             placeholder="CPF"
           />
           {errors.cpf && (
@@ -115,7 +118,7 @@ export default function Register  () {
           <input
             {...register("email")}
             type="email"
-            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm placeholder-gray-700 text-black "
             placeholder="Email"
           />
           {errors.email && (
@@ -127,7 +130,7 @@ export default function Register  () {
           <input
             {...register("password")}
             type="password"
-            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black "
             placeholder="Senha"
           />
           {errors.password && (
@@ -135,13 +138,14 @@ export default function Register  () {
               {errors.password.message}
             </span>
           )}
+          {!errors.password && <span className="text-white">* Mínimo de 6 caracteres</span>}
         </div>
 
         <div className="flex flex-col gap-1">
           <input
             {...register("confirmPassword")}
             type="password"
-            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black"
+            className="p-2 bg-white rounded-sm mb-2 placeholder-gray-700 text-black "
             placeholder="Confirmar senha"
           />
           {errors.confirmPassword && (
@@ -157,7 +161,7 @@ export default function Register  () {
               {...register("number")}
               value={values.number || ""}
               onChange={(e) => setValue("number", phoneMask(e.target.value))}
-              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black focus:outline-blue-500"
+              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black  focus:outline-blue-500"
               placeholder="Telefone"
             />
             {errors.number && (
@@ -172,7 +176,7 @@ export default function Register  () {
               {...register("cep")}
               value={values.cep || ""}
               onChange={(e) => setValue("cep", zipCodeMask(e.target.value))}
-              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black focus:outline-blue-500"
+              className="w-full p-2 bg-white border border-gray-300 rounded-sm placeholder-gray-700 text-black  focus:outline-blue-500"
               placeholder="CEP"
             />
             {errors.cep && (
@@ -187,13 +191,13 @@ export default function Register  () {
           <Button
             texto=" ← "
             type="button"
-            className="text-white justify-self-start gap-2 text-[20px]"
+            className="text-white justify-self-start gap-2 text-[20px]!"
             onClick={() => navigate("/")}
           />
           <Button
             texto="Confirmar"
             type="submit"
-            className="text-white justify-self-center items-center gap-2 text-[20px] m-auto"
+            className="text-white justify-self-center items-center gap-2 text-[20px]! m-auto"
           />
         </div>
       </form>

@@ -1,5 +1,5 @@
-import api from "./api";
 import type { GarageProposalPayload } from "../types/types";
+import api from "./api";
 
 export interface UpdateProposalPayload {
   offeredValue: number;

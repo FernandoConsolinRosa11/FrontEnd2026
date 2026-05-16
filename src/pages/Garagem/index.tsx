@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import type { CardGarageProps } from "../../types/types";
-import GarageCard from "./components/garageCard";
-import { authStorage } from "../../utils/userLocalStorage";
-import garageService from "../../services/garageService";
+
 import { AuthContext } from "../../contexts/authContext";
+import garageService from "../../services/garageService";
+import type { CardGarageProps } from "../../types/types";
+import { authStorage } from "../../utils/userLocalStorage";
+import GarageCard from "./components/garageCard";
 
 export default function Garagem() {
   const [garageCars, setGarageCars] = useState<CardGarageProps[]>([]);

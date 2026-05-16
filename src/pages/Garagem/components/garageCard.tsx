@@ -1,8 +1,9 @@
 // src/pages/Garagem/components/garageCard.tsx
 import { useState } from "react";
+
+import Button from "../../../components/Button";
 import type { CardGarageProps } from "../../../types/types";
 import GarageProposalModal from "./garageProposalModal";
-import Button from "../../../components/Button";
 
 interface GarageCardComponentProps {
   car: CardGarageProps;

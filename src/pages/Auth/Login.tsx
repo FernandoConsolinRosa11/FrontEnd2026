@@ -1,7 +1,8 @@
 import "../Auth/css/auth.css";
-import Button from "../../components/Button.tsx";
-import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Button from "../../components/Button.tsx";
 import { AuthContext } from "../../contexts/authContext";
 import { authService } from "../../services/authService";
 
@@ -79,12 +80,12 @@ export default function Login() {
           <Button
             texto=" ← "
             type="button"
-            className="text-white justify-self-start gap-2 text-[20px]"
+            className="text-white justify-self-start gap-2 text-[20px]!"
             onClick={() => navigate("/")}
           />
           <Button
             texto="Confirmar"
-            className="text-white justify-self-center items-center gap-2 text-[20px] m-auto"
+            className="text-white justify-self-center items-center gap-2 text-[20px]! m-auto"
             type="submit"
           />
         </div>

@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { isValidCPF } from "../../../utils/isValidCPF";
 export const registerSchema = z
   .object({
