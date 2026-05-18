@@ -1,4 +1,4 @@
-import { Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { UserReviews } from "../../../data/reviews";
